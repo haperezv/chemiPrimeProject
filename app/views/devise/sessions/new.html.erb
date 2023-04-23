@@ -1,0 +1,74 @@
+<html lang="en" class="form-screen">
+<body>
+<div id="app">
+
+  <section class="section main-section">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-lock"></i></span>
+          Login
+        </p>
+      </header>
+      <div class="card-content">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+          <div class="field spaced">
+            <%= f.label :email, class: "label " %>
+            <div class="control icons-left">
+              <%= f.email_field :email, autofocus: true, class: "input ", placeholder: "user@example.com", autocomplete: "email" %>
+              <span class="icon is-small left"><i class="mdi mdi-account"></i></span>
+            </div>
+            <p class="help">
+              Please enter your login
+            </p>
+          </div>
+
+          <div class="field spaced">
+            <%= f.label :password, class: "label " %>
+            <p class="control icons-left">
+              <%= f.password_field :password, class: "input ", placeholder: "Password", autocomplete: "current-password" %>
+              <span class="icon is-small left"><i class="mdi mdi-asterisk"></i></span>
+            </p>
+            <p class="help">
+              Please enter your password
+            </p>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+              <div class="field spaced">
+                <div class="control">
+                  <%= f.check_box :remember_me, class: "check" %>
+                  <%= f.label :remember_me, class: "control-label" %>
+                </div>
+              </div>
+
+            <hr>
+
+            <div class="field grouped">
+              <div class="control">
+                <%= f.submit "Login", class: "button blue" %>
+              </div>
+            </div>
+          <% end %>
+          <%= render "devise/shared/links" %>    
+        <% end %>
+      </div>
+    </div>
+
+  </section>
+
+
+</div>
+
+<!-- Scripts below are for demo only -->
+<script type="text/javascript" src="js/main.min.js?v=1652870200386"></script>
+
+
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=658339141622648&ev=PageView&noscript=1"/></noscript>
+
+<!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+
+</body>
+</html>
