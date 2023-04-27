@@ -1,397 +1,236 @@
-<%= render partial:'partials/header'%>
-<section class="is-hero-bar">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-    <h1 class="title">
-      Dashboard
-    </h1>
-    <button class="button light">Button</button>
-  </div>
-</section>
+<div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen}">
+  <%= render partial:'partials/aside' %>
+  <div class="flex flex-col flex-1">
+    <%= render partial:'partials/header' %> 
+    <main class="h-full pb-16 overflow-y-auto">
+    <div class="container px-6 mx-auto grid">
+      <h2
+        class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+      >
+        Solicitud de Prueba
+      </h2>
 
-<section class="section main-section">
-  <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
-    <div class="card">
-      <div class="card-content">
-        <div class="flex items-center justify-between">
-          <div class="widget-label">
-            <h3>
-              Clients
-            </h3>
-            <h1>
-              512
-            </h1>
+      <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
+          <div class="relative z-0">
+            <label class="block text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Request number</span>
+              <input
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"
+                placeholder=""
+              />
+            </label>
           </div>
-          <span class="icon widget-icon text-green-500"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
+        </div>
+
+      </div>
+
+      <!-- Validation inputs -->
+      <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+       Job Information
+      </h4>
+      <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
+        <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
+          <div class="relative max-w-sm">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+            </div>
+            <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+          </div>
+
+          <div class="relative">
+            <label class="block text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Job Type</span>
+              <input
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"
+                placeholder=""
+              />
+            </label>
+          </div>
+          <div class="relative z-0">
+            <label class="block text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Job Time</span>
+              <input
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"
+                placeholder=""
+              />
+            </label>
+          </div>
+          <div class="relative">
+            <label class="block text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Submitted By</span>
+              <input
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"
+                placeholder=""
+              />
+            </label>
+          </div>
+          <div class="relative">
+            <label class="block text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Location</span>
+              <input
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"
+                placeholder=""
+              />
+            </label>
+          </div>
+          <div class="relative z-0">
+            <label class="block text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Base</span>
+              <input
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"
+                placeholder=""
+              />
+            </label>
+          </div>
+          <div class="relative">
+            <label class="block text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Request Date</span>
+              <input
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"
+                placeholder="Request Date"
+              />
+            </label>
+          </div>
+          <div class="relative">
+            <label class="block text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Job Type</span>
+              <input
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"
+                placeholder="Job Type"
+              />
+            </label>
+          </div>
+          <div class="relative z-0">
+            <label class="block text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Job Time</span>
+              <input
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"
+                placeholder="Job Time"
+              />
+            </label>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="card-content">
-        <div class="flex items-center justify-between">
-          <div class="widget-label">
-            <h3>
-              Sales
-            </h3>
-            <h1>
-              $7,770
-            </h1>
-          </div>
-          <span class="icon widget-icon text-blue-500"><i class="mdi mdi-cart-outline mdi-48px"></i></span>
-        </div>
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="card-content">
-        <div class="flex items-center justify-between">
-          <div class="widget-label">
-            <h3>
-              Performance
-            </h3>
-            <h1>
-              256%
-            </h1>
-          </div>
-          <span class="icon widget-icon text-red-500"><i class="mdi mdi-finance mdi-48px"></i></span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card mb-6">
-    <header class="card-header">
-      <p class="card-header-title">
-        <span class="icon"><i class="mdi mdi-finance"></i></span>
-        Performance
-      </p>
-      <a href="#" class="card-header-icon">
-        <span class="icon"><i class="mdi mdi-reload"></i></span>
-      </a>
-    </header>
-    <div class="card-content">
-      <div class="chart-area">
-        <div class="h-full">
-          <div class="chartjs-size-monitor">
-            <div class="chartjs-size-monitor-expand">
-              <div></div>
-            </div>
-            <div class="chartjs-size-monitor-shrink">
-              <div></div>
+      <!-- Inputs with icons -->
+      <h4
+        class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+      >
+        Icons
+      </h4>
+      <div
+        class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+      >
+        <label class="block text-sm">
+          <span class="text-gray-700 dark:text-gray-400">Icon left</span>
+          <!-- focus-within sets the color for the icon when input is focused -->
+          <div
+            class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400"
+          >
+            <input
+              class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+              placeholder="Jane Doe"
+            />
+            <div
+              class="absolute inset-y-0 flex items-center ml-3 pointer-events-none"
+            >
+              <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
             </div>
           </div>
-          <canvas id="big-line-chart" width="2992" height="1000" class="chartjs-render-monitor block" style="height: 400px; width: 1197px;"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
+        </label>
 
-  <div class="notification blue">
-    <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
-      <div>
-        <span class="icon"><i class="mdi mdi-buffer"></i></span>
-        <b>Responsive table</b>
-      </div>
-      <button type="button" class="button small textual --jb-notification-dismiss">Dismiss</button>
-    </div>
-  </div>
-
-  <div class="card has-table">
-    <header class="card-header">
-      <p class="card-header-title">
-        <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-        Clients
-      </p>
-      <a href="#" class="card-header-icon">
-        <span class="icon"><i class="mdi mdi-reload"></i></span>
-      </a>
-    </header>
-    <div class="card-content">
-      <table>
-        <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Company</th>
-          <th>City</th>
-          <th>Progress</th>
-          <th>Created</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td class="image-cell">
-            <div class="image">
-              <img src="https://avatars.dicebear.com/v2/initials/rebecca-bauch.svg" class="rounded-full">
+        <label class="block mt-4 text-sm">
+          <span class="text-gray-700 dark:text-gray-400">Icon right</span>
+          <!-- focus-within sets the color for the icon when input is focused -->
+          <div
+            class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400"
+          >
+            <input
+              class="block w-full pr-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+              placeholder="Jane Doe"
+            />
+            <div
+              class="absolute inset-y-0 right-0 flex items-center mr-3 pointer-events-none"
+            >
+              <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
             </div>
-          </td>
-          <td data-label="Name">Rebecca Bauch</td>
-          <td data-label="Company">Daugherty-Daniel</td>
-          <td data-label="City">South Cory</td>
-          <td data-label="Progress" class="progress-cell">
-            <progress max="100" value="79">79</progress>
-          </td>
-          <td data-label="Created">
-            <small class="text-gray-500" title="Oct 25, 2021">Oct 25, 2021</small>
-          </td>
-          <td class="actions-cell">
-            <div class="buttons right nowrap">
-              <button class="button small blue --jb-modal"  data-target="sample-modal-2" type="button">
-                <span class="icon"><i class="mdi mdi-eye"></i></span>
-              </button>
-              <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="image-cell">
-            <div class="image">
-              <img src="https://avatars.dicebear.com/v2/initials/felicita-yundt.svg" class="rounded-full">
-            </div>
-          </td>
-          <td data-label="Name">Felicita Yundt</td>
-          <td data-label="Company">Johns-Weissnat</td>
-          <td data-label="City">East Ariel</td>
-          <td data-label="Progress" class="progress-cell">
-            <progress max="100" value="67">67</progress>
-          </td>
-          <td data-label="Created">
-            <small class="text-gray-500" title="Jan 8, 2021">Jan 8, 2021</small>
-          </td>
-          <td class="actions-cell">
-            <div class="buttons right nowrap">
-              <button class="button small blue --jb-modal"  data-target="sample-modal-2" type="button">
-                <span class="icon"><i class="mdi mdi-eye"></i></span>
-              </button>
-              <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="image-cell">
-            <div class="image">
-              <img src="https://avatars.dicebear.com/v2/initials/mr-larry-satterfield-v.svg" class="rounded-full">
-            </div>
-          </td>
-          <td data-label="Name">Mr. Larry Satterfield V</td>
-          <td data-label="Company">Hyatt Ltd</td>
-          <td data-label="City">Windlerburgh</td>
-          <td data-label="Progress" class="progress-cell">
-            <progress max="100" value="16">16</progress>
-          </td>
-          <td data-label="Created">
-            <small class="text-gray-500" title="Dec 18, 2021">Dec 18, 2021</small>
-          </td>
-          <td class="actions-cell">
-            <div class="buttons right nowrap">
-              <button class="button small blue --jb-modal"  data-target="sample-modal-2" type="button">
-                <span class="icon"><i class="mdi mdi-eye"></i></span>
-              </button>
-              <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="image-cell">
-            <div class="image">
-              <img src="https://avatars.dicebear.com/v2/initials/mr-broderick-kub.svg" class="rounded-full">
-            </div>
-          </td>
-          <td data-label="Name">Mr. Broderick Kub</td>
-          <td data-label="Company">Kshlerin, Bauch and Ernser</td>
-          <td data-label="City">New Kirstenport</td>
-          <td data-label="Progress" class="progress-cell">
-            <progress max="100" value="71">71</progress>
-          </td>
-          <td data-label="Created">
-            <small class="text-gray-500" title="Sep 13, 2021">Sep 13, 2021</small>
-          </td>
-          <td class="actions-cell">
-            <div class="buttons right nowrap">
-              <button class="button small blue --jb-modal"  data-target="sample-modal-2" type="button">
-                <span class="icon"><i class="mdi mdi-eye"></i></span>
-              </button>
-              <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="image-cell">
-            <div class="image">
-              <img src="https://avatars.dicebear.com/v2/initials/barry-weber.svg" class="rounded-full">
-            </div>
-          </td>
-          <td data-label="Name">Barry Weber</td>
-          <td data-label="Company">Schulist, Mosciski and Heidenreich</td>
-          <td data-label="City">East Violettestad</td>
-          <td data-label="Progress" class="progress-cell">
-            <progress max="100" value="80">80</progress>
-          </td>
-          <td data-label="Created">
-            <small class="text-gray-500" title="Jul 24, 2021">Jul 24, 2021</small>
-          </td>
-          <td class="actions-cell">
-            <div class="buttons right nowrap">
-              <button class="button small blue --jb-modal"  data-target="sample-modal-2" type="button">
-                <span class="icon"><i class="mdi mdi-eye"></i></span>
-              </button>
-              <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="image-cell">
-            <div class="image">
-              <img src="https://avatars.dicebear.com/v2/initials/bert-kautzer-md.svg" class="rounded-full">
-            </div>
-          </td>
-          <td data-label="Name">Bert Kautzer MD</td>
-          <td data-label="Company">Gerhold and Sons</td>
-          <td data-label="City">Mayeport</td>
-          <td data-label="Progress" class="progress-cell">
-            <progress max="100" value="62">62</progress>
-          </td>
-          <td data-label="Created">
-            <small class="text-gray-500" title="Mar 30, 2021">Mar 30, 2021</small>
-          </td>
-          <td class="actions-cell">
-            <div class="buttons right nowrap">
-              <button class="button small blue --jb-modal"  data-target="sample-modal-2" type="button">
-                <span class="icon"><i class="mdi mdi-eye"></i></span>
-              </button>
-              <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="image-cell">
-            <div class="image">
-              <img src="https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg" class="rounded-full">
-            </div>
-          </td>
-          <td data-label="Name">Lonzo Steuber</td>
-          <td data-label="Company">Skiles Ltd</td>
-          <td data-label="City">Marilouville</td>
-          <td data-label="Progress" class="progress-cell">
-            <progress max="100" value="17">17</progress>
-          </td>
-          <td data-label="Created">
-            <small class="text-gray-500" title="Feb 12, 2021">Feb 12, 2021</small>
-          </td>
-          <td class="actions-cell">
-            <div class="buttons right nowrap">
-              <button class="button small blue --jb-modal"  data-target="sample-modal-2" type="button">
-                <span class="icon"><i class="mdi mdi-eye"></i></span>
-              </button>
-              <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="image-cell">
-            <div class="image">
-              <img src="https://avatars.dicebear.com/v2/initials/jonathon-hahn.svg" class="rounded-full">
-            </div>
-          </td>
-          <td data-label="Name">Jonathon Hahn</td>
-          <td data-label="Company">Flatley Ltd</td>
-          <td data-label="City">Billiemouth</td>
-          <td data-label="Progress" class="progress-cell">
-            <progress max="100" value="74">74</progress>
-          </td>
-          <td data-label="Created">
-            <small class="text-gray-500" title="Dec 30, 2021">Dec 30, 2021</small>
-          </td>
-          <td class="actions-cell">
-            <div class="buttons right nowrap">
-              <button class="button small blue --jb-modal"  data-target="sample-modal-2" type="button">
-                <span class="icon"><i class="mdi mdi-eye"></i></span>
-              </button>
-              <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="image-cell">
-            <div class="image">
-              <img src="https://avatars.dicebear.com/v2/initials/ryley-wuckert.svg" class="rounded-full">
-            </div>
-          </td>
-          <td data-label="Name">Ryley Wuckert</td>
-          <td data-label="Company">Heller-Little</td>
-          <td data-label="City">Emeraldtown</td>
-          <td data-label="Progress" class="progress-cell">
-            <progress max="100" value="54">54</progress>
-          </td>
-          <td data-label="Created">
-            <small class="text-gray-500" title="Jun 28, 2021">Jun 28, 2021</small>
-          </td>
-          <td class="actions-cell">
-            <div class="buttons right nowrap">
-              <button class="button small blue --jb-modal"  data-target="sample-modal-2" type="button">
-                <span class="icon"><i class="mdi mdi-eye"></i></span>
-              </button>
-              <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="image-cell">
-            <div class="image">
-              <img src="https://avatars.dicebear.com/v2/initials/sienna-hayes.svg" class="rounded-full">
-            </div>
-          </td>
-          <td data-label="Name">Sienna Hayes</td>
-          <td data-label="Company">Conn, Jerde and Douglas</td>
-          <td data-label="City">Jonathanfort</td>
-          <td data-label="Progress" class="progress-cell">
-            <progress max="100" value="55">55</progress>
-          </td>
-          <td data-label="Created">
-            <small class="text-gray-500" title="Mar 7, 2021">Mar 7, 2021</small>
-          </td>
-          <td class="actions-cell">
-            <div class="buttons right nowrap">
-              <button class="button small blue --jb-modal"  data-target="sample-modal-2" type="button">
-                <span class="icon"><i class="mdi mdi-eye"></i></span>
-              </button>
-              <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <div class="table-pagination">
-        <div class="flex items-center justify-between">
-          <div class="buttons">
-            <button type="button" class="button active">1</button>
-            <button type="button" class="button">2</button>
-            <button type="button" class="button">3</button>
           </div>
-          <small>Page 1 of 3</small>
-        </div>
+        </label>
+      </div>
+
+      <!-- Inputs with buttons -->
+      <h4
+        class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+      >
+        Buttons
+      </h4>
+      <div
+        class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+      >
+        <label class="block text-sm">
+          <span class="text-gray-700 dark:text-gray-400">
+            Button left
+          </span>
+          <div class="relative">
+            <input
+              class="block w-full pl-20 mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+              placeholder="Jane Doe"
+            />
+            <button
+              class="absolute inset-y-0 px-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-l-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+            >
+              Click
+            </button>
+          </div>
+        </label>
+
+        <label class="block mt-4 text-sm">
+          <span class="text-gray-700 dark:text-gray-400">
+            Button right
+          </span>
+          <div
+            class="relative text-gray-500 focus-within:text-purple-600"
+          >
+            <input
+              class="block w-full pr-20 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+              placeholder="Jane Doe"
+            />
+            <button
+              class="absolute inset-y-0 right-0 px-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-r-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+            >
+              Click
+            </button>
+          </div>
+        </label>
       </div>
     </div>
+  </main>
   </div>
-</section>
-<%=render partial:'partials/footer'%>
+</div>

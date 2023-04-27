@@ -1,74 +1,38 @@
-<html lang="en" class="form-screen">
-<body>
-<div id="app">
+<div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+  <div
+    class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+  >
+    <div class="flex flex-col overflow-y-auto md:flex-row">
+      <div class="h-32 md:h-auto md:w-1/2">
+        <%= image_tag 'img/chemiPrime-login.jpeg', class:"object-cover w-full h-full"%>  
+      </div>
+      <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+        <div class="w-full">
+          <h1
+            class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
+          >
+            Login
+          </h1>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            
+            <%= f.label :email, class: "block text-sm text-gray-700 dark:text-gray-400" %>
+            <%= f.email_field :email, autofocus: true, class: "block text-sm block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input ", placeholder: "user@example.com", autocomplete: "email" %>
 
-  <section class="section main-section">
-    <div class="card">
-      <header class="card-header">
-        <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-lock"></i></span>
-          Login
-        </p>
-      </header>
-      <div class="card-content">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= f.label :password, class: "block mt-4 text-sm text-gray-700 dark:text-gray-400" %>
+            <%= f.password_field :password, class: "block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input ", placeholder: "Password", autocomplete: "current-password" %>
 
-          <div class="field spaced">
-            <%= f.label :email, class: "label " %>
-            <div class="control icons-left">
-              <%= f.email_field :email, autofocus: true, class: "input ", placeholder: "user@example.com", autocomplete: "email" %>
-              <span class="icon is-small left"><i class="mdi mdi-account"></i></span>
-            </div>
-            <p class="help">
-              Please enter your login
+            <%= f.submit "Log in", class: "block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" %>
+
+            <hr class="my-8" />
+            <p class="mt-4">
+              <%= render "devise/shared/links" %>  
             </p>
-          </div>
-
-          <div class="field spaced">
-            <%= f.label :password, class: "label " %>
-            <p class="control icons-left">
-              <%= f.password_field :password, class: "input ", placeholder: "Password", autocomplete: "current-password" %>
-              <span class="icon is-small left"><i class="mdi mdi-asterisk"></i></span>
+            <p class="mt-1">
+              <%= link_to 'Create account', new_user_registration_path, class: "text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" %> 
             </p>
-            <p class="help">
-              Please enter your password
-            </p>
-          </div>
-
-          <% if devise_mapping.rememberable? %>
-              <div class="field spaced">
-                <div class="control">
-                  <%= f.check_box :remember_me, class: "check" %>
-                  <%= f.label :remember_me, class: "control-label" %>
-                </div>
-              </div>
-
-            <hr>
-
-            <div class="field grouped">
-              <div class="control">
-                <%= f.submit "Login", class: "button blue" %>
-              </div>
-            </div>
           <% end %>
-          <%= render "devise/shared/links" %>    
-        <% end %>
+        </div>
       </div>
     </div>
-
-  </section>
-
-
+  </div>
 </div>
-
-<!-- Scripts below are for demo only -->
-<script type="text/javascript" src="js/main.min.js?v=1652870200386"></script>
-
-
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=658339141622648&ev=PageView&noscript=1"/></noscript>
-
-<!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
-<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
-
-</body>
-</html>
