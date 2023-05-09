@@ -1,0 +1,27 @@
+<%= form_with(model: @job) do |form| %>    
+    <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen}">
+        <%= render partial:'partials/aside' %>
+        <div class="flex flex-col flex-1">
+            <%= render partial:'partials/header' %> 
+            <main class="h-full pb-16 overflow-y-auto">
+                <div class="container px-6 mx-auto grid">
+                    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"> Administrator </h2>
+                     
+                    <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"> New Job Type </h4>
+                        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
+                            <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
+                                <div class="relative max-w-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">
+                                            Job Name
+                                    </span>
+                                    <%= form.text_field :job_type, placeholder:"", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>
+                                </div> 
+                            </div>
+                        </div> 
+
+                     <%= form.submit "Submit item", class:"cursor-pointer my-2 px-4 py-2 text-center inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"%>    
+                   
+                </main>
+            </div>
+    </div>
+<% end %>
