@@ -9,11 +9,10 @@ class RequestsController < ApplicationController
     end
 
     def create
-        @request = Request.new(request_params)
-   #    @request.request_date = Date.today
+        @request = Request.create request_params
 
-        if @request.save
-            redirect_to requests_index_path
+        if @request.persisted?
+            redirect_to requests_index_path, notice: "New Request was successfully created."
         else
             render :new, status: :unprocessable_entity
         end

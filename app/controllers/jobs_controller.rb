@@ -14,7 +14,7 @@ class JobsController < ApplicationController
         if @job.persisted?
             redirect_to jobs_new_path(@job), notice: "New Job was successfully created."
         else
-            format.html  render :new, status: :unprocessable_entity
+             render :new, status: :unprocessable_entity
         end
     end
 

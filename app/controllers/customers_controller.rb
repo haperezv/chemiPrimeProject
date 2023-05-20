@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
     if @customer.persisted?
       redirect_to customers_new_path(@customer), notice: "New Customer was successfully created."
     else
-      format.html  render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

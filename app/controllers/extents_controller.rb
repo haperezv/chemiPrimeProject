@@ -9,7 +9,7 @@ class ExtentsController < ApplicationController
     if @extent.persisted?
       redirect_to  extents_new_path(@extent), notice: "New Extent was successfully created."
     else
-      format.html  render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

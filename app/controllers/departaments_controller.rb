@@ -14,7 +14,7 @@ class DepartamentsController < ApplicationController
     if @departament.persisted?
       redirect_to departaments_new_path(@departament), notice: "New Departament was successfully created."
     else
-      format.html  render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

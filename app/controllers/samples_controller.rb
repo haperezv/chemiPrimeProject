@@ -7,13 +7,9 @@ class SamplesController < ApplicationController
     @sample = Sample.create sample_params
 
     if @sample.persisted?
-      respond_to do |format|
-        format.html { redirect_to samples_new_path(@sample), notice: "New Sample was successfully created." }
-        end
+        redirect_to samples_new_path(@sample), notice: "New Sample was successfully created." 
     else
-      respond_to do |format|
-        format.html { render :new, status: :unprocessable_entity }
-      end
+        render :new, status: :unprocessable_entity
     end
   end
 

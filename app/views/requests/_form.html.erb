@@ -1,4 +1,13 @@
-<%= form_with(model:@request, data:{ controller: "flatpickr"}) do |form| %>    
+<%= form_with(model:@request, data:{ controller: "flatpickr"}) do |form| %> 
+
+        <% if @request.errors.any? %>
+            <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <% @request.errors.each do |error| %>
+                    <li> <%= error.full_message %> </li>
+                <%end%>
+            </div>
+        <%end%>
+
     <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"> Job Information </h4>
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
         <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
