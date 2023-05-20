@@ -10,9 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_09_214512) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_231245) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customers", force: :cascade do |t|
+    t.string "customer", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "departaments", force: :cascade do |t|
+    t.string "departament", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "extents", force: :cascade do |t|
+    t.string "extent", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "jobs", force: :cascade do |t|
     t.string "job_type", null: false
@@ -27,7 +45,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_214512) do
     t.string "request_serial"
     t.date "job_time", null: false
     t.bigint "job_id", null: false
+    t.string "location", null: false
+    t.bigint "customer_id", null: false
+    t.bigint "sample_id", null: false
+    t.bigint "extent_id", null: false
+    t.bigint "departament_id", null: false
+    t.string "well_name", null: false
+    t.index ["customer_id"], name: "index_requests_on_customer_id"
+    t.index ["departament_id"], name: "index_requests_on_departament_id"
+    t.index ["extent_id"], name: "index_requests_on_extent_id"
     t.index ["job_id"], name: "index_requests_on_job_id"
+    t.index ["sample_id"], name: "index_requests_on_sample_id"
+  end
+
+  create_table "samples", force: :cascade do |t|
+    t.string "sample", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,5 +76,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_214512) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "requests", "customers"
+  add_foreign_key "requests", "departaments"
+  add_foreign_key "requests", "extents"
   add_foreign_key "requests", "jobs"
+  add_foreign_key "requests", "samples"
 end

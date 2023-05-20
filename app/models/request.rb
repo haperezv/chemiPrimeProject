@@ -1,3 +1,4 @@
+
 class Request < ApplicationRecord
     after_create :serial_request
     belongs_to :job
