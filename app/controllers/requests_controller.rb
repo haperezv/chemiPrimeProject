@@ -1,7 +1,8 @@
 class RequestsController < ApplicationController
 
     def index
-        @requests = Request.all
+        current_page = params[:page] ||= 1
+        @requests = Request.where("request_date >= ?", Date.today).order("request_serial DESC").paginate(page: current_page, per_page: 5)
     end
 
     def new
@@ -9,23 +10,32 @@ class RequestsController < ApplicationController
     end
 
     def create
-        @request = Request.create request_params
+        
+        @request = Request.new(request_params)
+        @request.request_date = Date.today
 
-        if @request.persisted?
-            redirect_to requests_index_path, notice: "New Request was successfully created."
+        if @request.save
+            redirect_to requests_path, notice: "New Request was successfully created."
         else
             render :new, status: :unprocessable_entity
         end
+
     end
 
     def show
-        @request = Request.find(params[:id])
+       # @request = Request.find(params[:id])
+       @request = Request.friendly.find(params[:id])
+    end
+
+    def search
+        @q = params[:q]
+        @requests = Request.where("request_serial LIKE ?", "%#{@q}%")
     end
 
     private
 
     def request_params
-        params.require(:request).permit( :request_date, :job_time, :job_id, :location, :customer_id, :sample_id, :extent_id, :departament_id, :well_name)
+        params.require(:request).permit( :job_time, :job_id, :location, :customer_id, :sample_id, :extent_id, :departament_id, :well_name)
     end
 
 

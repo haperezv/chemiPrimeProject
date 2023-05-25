@@ -2,10 +2,15 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get 'requests/index', to: 'requests#index'
-  get 'requests/new', to: 'requests#new'
-  post 'requests', to: 'requests#create'
-  get 'requests/:id', to: 'requests#show', as: 'request'
+  resources :requests do
+    get 'search', on: :collection
+  end
+
+  #get 'requests/index', to: 'requests#index'
+  #get 'requests/new', to: 'requests#new'
+  #post 'requests', to: 'requests#create'
+  #get 'requests/:id', to: 'requests#show', as: 'request'
+  #get 'search', on: :collection
 
   get 'jobs/index', to: 'jobs#index'
   get 'jobs/new', to: 'jobs#new'

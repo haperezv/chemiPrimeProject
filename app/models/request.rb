@@ -15,10 +15,13 @@
 #  extent_id      :bigint           not null
 #  departament_id :bigint           not null
 #  well_name      :string           not null
+#  slug           :string
 #
 class Request < ApplicationRecord
     after_create :serial_request
     belongs_to :job
+    extend FriendlyId
+    friendly_id :request_serial, use: :slugged
     
     validates :request_date, presence: { message: "La fecha de solicitud no puede estar vacía" }
     validates :job_time, presence: { message: "La fecha de trabajo no puede estar vacía" }

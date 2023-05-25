@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_231245) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_165717) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,11 +51,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_231245) do
     t.bigint "extent_id", null: false
     t.bigint "departament_id", null: false
     t.string "well_name", null: false
+    t.string "slug"
     t.index ["customer_id"], name: "index_requests_on_customer_id"
     t.index ["departament_id"], name: "index_requests_on_departament_id"
     t.index ["extent_id"], name: "index_requests_on_extent_id"
     t.index ["job_id"], name: "index_requests_on_job_id"
     t.index ["sample_id"], name: "index_requests_on_sample_id"
+    t.index ["slug"], name: "index_requests_on_slug", unique: true
   end
 
   create_table "samples", force: :cascade do |t|

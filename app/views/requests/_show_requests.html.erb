@@ -1,0 +1,76 @@
+<%= form_with(model:@request, data:{ controller: "flatpickr"}) do |form| %>
+
+    <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"> Job Information </h4>
+
+
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
+        <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Requested Date
+                </span>
+
+                <span class="flex "> 
+                    <%= form.text_field :request_date, disabled: true, class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                </span>
+            
+            </div> 
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Job Type                                          
+                </span>
+                <%= form.collection_select :job_id, Job.all, :id, :job_type, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500", disabled: true } %>
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Job Time
+                </span>
+                <%= form.text_field :job_time, disabled: true, class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Submitted By
+                </span>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                <%= current_user.email %>
+                </p>
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Location
+                </span>
+                <%= form.text_field :location, placeholder:"", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true %>
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                    Base
+                </span>
+                <%=form.collection_select :departament_id, Departament.all, :id, :departament, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500", disabled: true } %>
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                    Customer
+                </span>
+                <%= form.collection_select :customer_id, Customer.all, :id, :customer, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500", disabled: true } %>
+            </div> 
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Well Name
+                </span>
+                <%= form.text_field :well_name, placeholder:"", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true %>
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                    Fluid Density
+                </span>
+                <span class="flex "> 
+                    <%= form.collection_select :sample_id, Sample.all, :id, :sample, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500", disabled: true } %>
+                    <%= form.collection_select :extent_id, Extent.all, :id, :extent, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500", disabled: true } %>
+                    
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+<%end%>

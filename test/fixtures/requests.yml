@@ -15,6 +15,7 @@
 #  extent_id      :bigint           not null
 #  departament_id :bigint           not null
 #  well_name      :string           not null
+#  slug           :string
 #
 
 one:
