@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
 
     def index
         current_page = params[:page] ||= 1
-        @requests = Request.where("request_date >= ?", Date.today).order("request_serial DESC").paginate(page: current_page, per_page: 5)
+        @requests = Request.where("request_date <= ?", Date.today).order("request_serial DESC").paginate(page: current_page, per_page: 5)
     end
 
     def new
