@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_165717) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_31_173514) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_165717) do
     t.bigint "departament_id", null: false
     t.string "well_name", null: false
     t.string "slug"
+    t.float "pipe_size", null: false
+    t.float "bhst", null: false
     t.index ["customer_id"], name: "index_requests_on_customer_id"
     t.index ["departament_id"], name: "index_requests_on_departament_id"
     t.index ["extent_id"], name: "index_requests_on_extent_id"

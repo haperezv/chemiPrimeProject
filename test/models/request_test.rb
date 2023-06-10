@@ -16,6 +16,8 @@
 #  departament_id :bigint           not null
 #  well_name      :string           not null
 #  slug           :string
+#  pipe_size      :float            not null
+#  bhst           :float            not null
 #
 require "test_helper"
 
