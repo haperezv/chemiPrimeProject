@@ -32,11 +32,16 @@ class RequestsController < ApplicationController
         @requests = Request.where("request_serial LIKE ?", "%#{@q}%")
     end
 
+    def bhst_calculator
+        
+    end
+
     private
 
     def request_params
-        params.require(:request).permit( :job_time, :job_id, :location, :customer_id, :sample_id, :extent_id, :departament_id, :well_name, :pipe_size)
+        params.require(:request).permit( :job_time, :job_id, :location, :customer_id, :sample_id, :extent_id, :departament_id, :well_name, :pipe_size, :bhst)
     end
+    
 
 
 

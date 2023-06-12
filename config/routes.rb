@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :requests do
     get 'search', on: :collection
+    get 'bhst_calculator', to: 'requests#bhst_calculator', on: :collection
   end
 
   #get 'requests/index', to: 'requests#index'

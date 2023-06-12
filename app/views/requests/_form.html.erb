@@ -1,4 +1,4 @@
-<%= form_with(model:@request, data:{ controller: "flatpickr"}) do |form| %> 
+<%= form_with(model:@request) do |form| %> 
 
         <% if @request.errors.any? %>
             <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -87,21 +87,22 @@
     </div>
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
         <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
+            <div  class="relative max-w-sm">
+                    <%=link_to "Calculation BHST", bhst_calculator_requests_path,  class:"flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple",
+                        data:{turbo_frame:"modal"} %>
+
+            </div>
+            <div  class="relative max-w-sm">
+                    <span class="text-gray-700 dark:text-gray-400">
+                        BHST (ºF)                                      
+                    </span>
+                    <%= form.text_field :bhst, placeholder:"", id:"result", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>     
+            </div>
             <div class="relative max-w-sm">
                     <span class="text-gray-700 dark:text-gray-400">
                             Pipe Size                                          
                     </span>
                 <%= form.text_field :pipe_size, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
-            </div>
-            <div id="root" class="relative max-w-sm">
-                    <span class="text-gray-700 dark:text-gray-400">
-                        BHST (ºF)                                      
-                    </span>
-                    <!-- <button class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                        BHS
-                    </button> -->
-
-                <%= form.text_field :bhst, placeholder:"",  class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>      
             </div>
         </div>
     </div>
