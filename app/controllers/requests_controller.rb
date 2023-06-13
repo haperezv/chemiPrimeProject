@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
 
     def index
         current_page = params[:page] ||= 1
-        @requests = Request.where("request_date >= ?", Date.today).order("request_serial DESC").paginate(page: current_page, per_page: 5)
+        @requests = Request.where("request_date <= ?", Date.today).order("request_serial DESC").paginate(page: current_page, per_page: 5)
     end
 
     def new
@@ -32,11 +32,16 @@ class RequestsController < ApplicationController
         @requests = Request.where("request_serial LIKE ?", "%#{@q}%")
     end
 
+    def bhst_calculator
+        
+    end
+
     private
 
     def request_params
-        params.require(:request).permit( :job_time, :job_id, :location, :customer_id, :sample_id, :extent_id, :departament_id, :well_name)
+        params.require(:request).permit( :job_time, :job_id, :location, :customer_id, :sample_id, :extent_id, :departament_id, :well_name, :pipe_size, :bhst)
     end
+    
 
 
 

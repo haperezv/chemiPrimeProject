@@ -16,6 +16,8 @@
 #  departament_id :bigint           not null
 #  well_name      :string           not null
 #  slug           :string
+#  pipe_size      :float            not null
+#  bhst           :float            not null
 #
 class Request < ApplicationRecord
     after_create :serial_request
@@ -32,6 +34,8 @@ class Request < ApplicationRecord
     validates :extent_id, presence: { message: "La extensión no puede estar vacía"}
     validates :departament_id, presence: { message: "El departamento no puede estar vacío"}
     validates :job_id, presence: { message: "El trabajo no puede estar vacío"}
+    validates :pipe_size, presence: { message: "El tamaño de la tubería no puede estar vacío"}
+    validates :bhst, presence: { message: "El BHST no puede estar vacío"}
 
     private
         
