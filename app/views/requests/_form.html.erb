@@ -104,6 +104,42 @@
                     </span>
                 <%= form.text_field :pipe_size, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
             </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Depth MD (ft)                                         
+                </span>
+                <%= form.text_field :depth_md, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Depth TVD (ft)                                         
+                </span>
+                <%= form.text_field :depth_tvd, placeholder:"0.0", id:"tvd", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Temperature Gradient ºF/100 ft                                         
+                </span>
+                <%= form.text_field :temperature_gradient, id:"temp-gradient", placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Test Pressure (psi)                                       
+                </span>
+                <%= form.text_field :psi, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        BHCT (ºF)                                         
+                </span>
+                <%= form.text_field :bhct, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Description mezcla                                        
+                </span>
+                <%= form.text_field :time_mezcla, placeholder:"mezcla", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+            </div>
         </div>
     </div>
     <%= form.submit "Submit item", class:"cursor-pointer my-2 px-4 py-2 text-center inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"%>

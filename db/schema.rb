@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_31_173514) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_031517) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_173514) do
     t.string "slug"
     t.float "pipe_size", null: false
     t.float "bhst", null: false
+    t.float "temperature_gradient", null: false
+    t.float "depth_md", null: false
+    t.float "depth_tvd", null: false
+    t.float "psi", null: false
+    t.float "bhct", null: false
+    t.text "time_mezcla", null: false
     t.index ["customer_id"], name: "index_requests_on_customer_id"
     t.index ["departament_id"], name: "index_requests_on_departament_id"
     t.index ["extent_id"], name: "index_requests_on_extent_id"
