@@ -11,13 +11,15 @@ class JobsController < ApplicationController
     end
 
     def create
-        @job = Job.create job_params
-
-        if @job.persisted?
-            redirect_to jobs_path, notice: "New Job was successfully created."
-        else
-             render :new, status: :unprocessable_entity
-        end
+        @job = Job.new job_params
+            if @job.save
+                respond_to do |format|    
+                    format.html { redirect_to jobs_path, notice: "Job was successfully created." }
+                    format.turbo_stream
+                end
+            else
+                render :new
+            end
     end
 
     def show

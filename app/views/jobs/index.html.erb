@@ -4,11 +4,24 @@
         <%= render partial:'partials/header' %>
         <main class="h-full pb-16 overflow-y-auto">
             <div class="container px-6 mx-auto grid">
-                <h2
-                    class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-                >
-                    Jobs Details
-                </h2>
+                <div class="relative px-6 py-3">     
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200" >
+                    Jobs
+                </h2>       
+                    <%= link_to  jobs_new_path, data:{turbo_frame: dom_id(Job.new)} do %>
+
+                        <span  class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100">
+                            <svg class="h-6 w-6 text-purple-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+
+                            <span class="ml-4">New Job</span>
+                        </span>    
+
+                    <% end %>
+                </div>
+                <%= turbo_frame_tag Job.new%>
+
                 <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">
                     <div class="flex items-center">
                     <span>Details</span>
@@ -21,30 +34,15 @@
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700">
                                 <tr >                      
                                 <th scope="col" class="px-6 py-3">Job Type</th>
-                                <th scope="col" class="px-6 py-3">Action</th>
+                                <th scope="col" class="px-6 py-3">View</th>
+                                <th scope="col" class="px-6 py-3">Delete</th>
                                 </tr>
                             </thead>
-                            <tbody >
-                              <% @jobs.each do |job| %>
-                                    <tr>
-                                        <td class="px-4 py-3">
-                                            <div class="flex items-center text-sm">
-                                                <!-- Avatar with inset shadow -->
-                                                <div class="flex p-2">
-                                                    <svg class="h-6 w-6 text-indigo-500"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg>
-                                                </div>
-                                            <div>
-                                            
-                                            <p class="font-semibold"><%= job.job_type %></p>
-                                        </td>
-                                        <td class="px-4 py-3">
-                                            <%= link_to job do %>
-                                                <svg class="h-6 w-6 text-indigo-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="2" />  <path d="M2 12l1.5 2a11 11 0 0 0 17 0l1.5 -2" />  <path d="M2 12l1.5 -2a11 11 0 0 1 17 0l1.5 2" /></svg>
-                                            <%end%>
-                                        </td>
-                                    </tr>
-                                <% end %>  
-                            </tbody>
+                            <tbody id="jobs" is="turbo-frame" >
+                                <% @jobs.each do |job| %>
+                                    <%= render job%>
+                                <% end %>
+                            </tbody>       
                         </table>
                     </div>
                 </div>
