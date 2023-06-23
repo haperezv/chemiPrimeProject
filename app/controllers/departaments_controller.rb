@@ -2,7 +2,8 @@ class DepartamentsController < ApplicationController
   before_action :set_departament, only: [:destroy, :show]
 
   def index
-    @departaments = Departament.all
+    current_page = params[:page] ||= 1
+    @departaments = Departament.all.order("id DESC").paginate(page: current_page, per_page: 5)
   end
 
   def new
@@ -10,10 +11,13 @@ class DepartamentsController < ApplicationController
   end
 
   def create
-    @departament = Departament.create departament_params
+    @departament = Departament.new departament_params
 
-    if @departament.persisted?
-      redirect_to departaments_path, notice: "New Departament was successfully created."
+    if @departament.save
+      respond_to do |format|
+        format.html { redirect_to departaments_path, notice: "Departament was successfully created." }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end

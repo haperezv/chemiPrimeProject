@@ -1,0 +1,22 @@
+<tr>
+    <td class="px-4 py-3">
+        <div class="flex items-center text-sm">
+            <!-- Avatar with inset shadow -->
+            <div class="flex p-2">
+                <svg class="h-6 w-6 text-purple-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="9" />  <line x1="3.6" y1="9" x2="20.4" y2="9" />  <line x1="3.6" y1="15" x2="20.4" y2="15" />  <path d="M11.5 3a17 17 0 0 0 0 18" />  <path d="M12.5 3a17 17 0 0 1 0 18" /></svg>
+            </div>
+                <p class="font-semibold"><%= departament.departament %></p>
+        </div>
+    </td>
+    <td class="px-4 py-3">
+        <%= link_to departament do %>
+            <svg class="h-6 w-6 text-indigo-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="2" />  <path d="M2 12l1.5 2a11 11 0 0 0 17 0l1.5 -2" />  <path d="M2 12l1.5 -2a11 11 0 0 1 17 0l1.5 2" /></svg>
+        <%end%>
+    </td>
+    <td class="px-4 py-3">
+        <%= link_to departament, data: {turbo_method: :delete,
+                            turbo_confirm: 'Estas seguro eliminar el producto?'} do %>
+            <svg class="h-6 w-6 text-red-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="3" y="4" width="18" height="4" rx="2" />  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />  <line x1="10" y1="12" x2="14" y2="12" /></svg>
+        <%end%>
+    </td>
+</tr>
