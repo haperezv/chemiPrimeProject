@@ -11,7 +11,6 @@
 #  job_id               :bigint           not null
 #  location             :string           not null
 #  customer_id          :bigint           not null
-#  sample_id            :bigint           not null
 #  extent_id            :bigint           not null
 #  departament_id       :bigint           not null
 #  well_name            :string           not null
@@ -24,6 +23,7 @@
 #  psi                  :float            not null
 #  bhct                 :float            not null
 #  time_mezcla          :text             not null
+#  mud_weight           :decimal(, )      default(0.0), not null
 #
 class Request < ApplicationRecord
     after_create :serial_request
@@ -36,12 +36,12 @@ class Request < ApplicationRecord
     validates :location, presence: { message: "La ubicación no puede estar vacía" }
     validates :well_name, presence: { message: "El nombre del pozo no puede estar vacío" }
     validates :customer_id, presence: { message: "El cliente no puede estar vacío"}
-    validates :sample_id, presence: { message: "La muestra no puede estar vacía"}
     validates :extent_id, presence: { message: "La extensión no puede estar vacía"}
     validates :departament_id, presence: { message: "El departamento no puede estar vacío"}
     validates :job_id, presence: { message: "El trabajo no puede estar vacío"}
     validates :pipe_size, presence: { message: "El tamaño de la tubería no puede estar vacío"}
     validates :bhst, presence: { message: "El BHST no puede estar vacío"}
+    validates :mud_weight, presence: { message: "El peso del lodo no puede estar vacío"}
 
     private
         

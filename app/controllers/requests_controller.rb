@@ -39,10 +39,8 @@ class RequestsController < ApplicationController
     private
 
     def request_params
-        params.require(:request).permit( :job_time, :job_id, :location, :customer_id, :sample_id, :extent_id, :departament_id, :well_name, :pipe_size, :bhst, :temperature_gradient, :depth_md, :depth_tvd, :psi, :bhct, :time_mezcla)
+        params.require(:request).permit( :job_time, :job_id, :location, :customer_id, :extent_id, :departament_id, :well_name, :pipe_size, :bhst, :temperature_gradient, :depth_md, :depth_tvd, :psi, :bhct, :time_mezcla, :mud_weight)
     end
     
-
-
 
 end

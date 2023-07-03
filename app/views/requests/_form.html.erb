@@ -70,46 +70,16 @@
                 </span>
                 <%= form.text_field :well_name, placeholder:"", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>
             </div>
-            <div class="relative max-w-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                    Fluid Density
-                </span>
-                <span class="flex "> 
-                    <%= form.collection_select :sample_id, Sample.all, :id, :sample, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
-                    <%= form.collection_select :extent_id, Extent.all, :id, :extent, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
-                    
-                </span>
-            </div>
         </div>
     </div>
-    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
-        <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"> Well Information </h4>
-    </div>
-    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
-        <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
-            <div  class="relative max-w-sm">
-                    <%=link_to "Calculation BHST", bhst_calculator_requests_path,  class:"flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple",
-                        data:{turbo_frame:"modal"} %>
 
-            </div>
-            <div  class="relative max-w-sm">
-                    <span class="text-gray-700 dark:text-gray-400">
-                        BHST (ºF)                                      
-                    </span>
-                    <%= form.text_field :bhst, placeholder:"", id:"result", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>     
-            </div>
-            <div class="relative max-w-sm">
-                    <span class="text-gray-700 dark:text-gray-400">
-                            Pipe Size                                          
-                    </span>
-                <%= form.text_field :pipe_size, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
-            </div>
-            <div class="relative max-w-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                        Depth MD (ft)                                         
-                </span>
-                <%= form.text_field :depth_md, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
-            </div>
+    <div class="grid gap-6 mb-8 md:grid-cols-2">
+        <div
+        class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+        >
+        <h4 class="mb-4 font-semibold">
+            Imput Data
+        </h4>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                         Depth TVD (ft)                                         
@@ -118,10 +88,69 @@
             </div>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
+                    Fluid Density
+                </span>
+                <span class="flex "> 
+                    <%= form.text_field :mud_weight, placeholder:"", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>
+                    <%= form.collection_select :extent_id, Extent.all, :id, :extent, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
+                    
+                </span>
+            </div>
+            <div  class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                    BHST (ºF)                                      
+                </span>
+                <span class="flex "> 
+                    <%=link_to "Calculation BHST", bhst_calculator_requests_path,  class:"flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple",
+                        data:{turbo_frame:"modal"} %>
+                </span>
+
+            </div>
+            <div  class="relative max-w-sm">
+                <span class="flex "> 
+                    <%= form.text_field :bhst, placeholder:"", id:"result", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>     
+                </span>
+            </div>
+        </div>
+        <div
+        class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+        >
+            <h4 class="mb-4 font-semibold">
+                Output Data
+            </h4>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
                         Temperature Gradient ºF/100 ft                                         
                 </span>
                 <%= form.text_field :temperature_gradient, id:"temp-gradient", placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
             </div>
+        </div>
+    </div>
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
+        <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
+
+
+
+        </div>
+    </div>
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
+        <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"> Output Data </h4>
+    </div>
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
+        <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Pipe Size                                          
+                </span>
+                <%= form.text_field :pipe_size, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Depth MD (ft)                                         
+                </span>
+                <%= form.text_field :depth_md, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+            </div>
+
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                         Test Pressure (psi)                                       

@@ -11,7 +11,6 @@
 #  job_id               :bigint           not null
 #  location             :string           not null
 #  customer_id          :bigint           not null
-#  sample_id            :bigint           not null
 #  extent_id            :bigint           not null
 #  departament_id       :bigint           not null
 #  well_name            :string           not null
@@ -24,6 +23,7 @@
 #  psi                  :float            not null
 #  bhct                 :float            not null
 #  time_mezcla          :text             not null
+#  mud_weight           :decimal(, )      default(0.0), not null
 #
 require "test_helper"
 
