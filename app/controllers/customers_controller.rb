@@ -12,8 +12,11 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.create customer_params
 
-    if @customer.persisted?
-      redirect_to customers_path, notice: "New Customer was successfully created."
+    if @customer.save
+      respond_to do |format|
+        format.html { redirect_to customers_path, notice: "New Customer was successfully created." }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end

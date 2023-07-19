@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend "extents", partial: "extents/extent", locals: { extent: @extent }%>
+<%= turbo_stream.update Extent.new, "" %>

@@ -15,8 +15,11 @@ class ExtentsController < ApplicationController
   def create
     @extent = Extent.create extent_params
 
-    if @extent.persisted?
-      redirect_to  extents_path, notice: "New Extent was successfully created."
+    if @extent.save
+      respond_to do |format|
+        format.html { redirect_to  extents_path, notice: "New Extent was successfully created." }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
