@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :requests do
+    get 'get_data', to: 'requests#get_data', on: :collection
     get 'search', on: :collection
     get 'bhst_calculator', to: 'requests#bhst_calculator', on: :collection
   end

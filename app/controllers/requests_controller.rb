@@ -6,11 +6,80 @@ class RequestsController < ApplicationController
     end
 
     def new
-        @request = Request.new
+       @request = Request.new
+    end
+
+    def get_data
+
+        x9 = params[:x9]
+        t8_roundup = params[:t8_roundup]
+        t8_rounddown = params[:t8_rounddown]
+        tvd = params[:tvd]
+        x11 = params[:x11]
+
+        busqueda1 = Casing.where(depth: x9.to_f, valor: t8_roundup.to_f)
+        busqueda2 = Casing.where(depth: x9.to_f, valor: t8_rounddown.to_f)
+        busqueda3 = tvd.to_f -  t8_rounddown.to_f
+
+        if busqueda1.empty?
+            @b1 = 0
+        else
+            busqueda1.each do |b1|
+                @b1 = b1.casing
+            end
+        end
+
+        if busqueda2.empty?
+            @b2 = 0
+        else
+            busqueda2.each do |b2|
+                @b2 = b2.casing
+            end
+        end
+
+        puts "@b1 #{@b1}"
+        puts "@b2 #{@b2}"
+
+        t9 = (@b1 - @b2) * busqueda3  * 10 + @b2
+
+        puts "t9: #{t9}"
+
+        busqueda4 = Casing.where(depth: x11.to_f, valor: t8_roundup.to_f)
+        busqueda5 = Casing.where(depth: x11.to_f, valor: t8_rounddown.to_f)
+
+
+        if busqueda4.empty?
+            @b4 = 0
+        else
+            busqueda4.each do |b4|
+                @b4 = b4.casing
+            end
+        end
+
+        if busqueda5.empty?
+            @b5 = 0
+        else
+            busqueda5.each do |b5|
+                @b5 = b5.casing
+            end
+        end
+
+        t11 = (@b4 - @b5) * busqueda3  * 10 + @b5
+
+        puts "t11: #{t11}"
+
+        data = {
+            t9: t9,
+            t11: t11
+        }
+        
+        respond_to do |format|
+          format.json { render json: data }
+        end
     end
 
     def create
-        
+
         @request = Request.new(request_params)
         @request.request_date = Date.today
 
@@ -24,7 +93,7 @@ class RequestsController < ApplicationController
 
     def show
        # @request = Request.find(params[:id])
-       @request = Request.friendly.find(params[:id])
+       @request = Request.includes(:job).friendly.find(params[:id])
     end
 
     def search

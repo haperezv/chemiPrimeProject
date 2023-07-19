@@ -16,6 +16,8 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag 'tailwind.output.css' %>
     <%= javascript_importmap_tags %>
+
+
   </head>
 
   <body >
@@ -28,16 +30,15 @@
       </div>
     </div>
     <%= yield %>
+    <script>
+        var buttons = document.querySelectorAll('.message-close');
+        for (var i = 0; i < buttons.length; i++) {
+            var button = buttons[i];
+            button.addEventListener('click', function() {
+                var message = document.getElementById('message-' + button.value);
+                message.style.display = 'none';
+            });
+        }
+    </script>
   </body>
-  <script>
-      var buttons = document.querySelectorAll('.message-close');
-      for (var i = 0; i < buttons.length; i++) {
-          var button = buttons[i];
-          button.addEventListener('click', function() {
-              var message = document.getElementById('message-' + button.value);
-              message.style.display = 'none';
-          });
-      }
-  </script>
-
 </html>
