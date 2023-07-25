@@ -93,7 +93,7 @@
                     Fluid Density
                 </span>
                 <span class="flex "> 
-                    <%= form.text_field :mud_weight, placeholder:"", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>
+                    <%= form.text_field :mud_weight, placeholder:"", id:"density", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>
                     <%= form.collection_select :extent_id, Extent.all, :id, :extent, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
                     
                 </span>
@@ -137,6 +137,12 @@
                 </span>
                 <%= form.text_field :bhct, id:"bhct", placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
             </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Test Pressure (psi)                                       
+                </span>
+                <%= form.text_field :psi, id:"psi", placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+            </div>
         </div>
     </div>
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
@@ -153,16 +159,17 @@
                 </span>
                 <%= form.text_field :depth_md, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
             </div>
+        </div>
+    </div>
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
+        <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"> Time </h4>
+    </div>
 
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
+        <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
-                        Test Pressure (psi)                                       
-                </span>
-                <%= form.text_field :psi, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
-            </div>
-            <div class="relative max-w-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                        Description mezcla                                        
+                        Pre mezcla                                        
                 </span>
                 <%= form.text_field :time_mezcla, placeholder:"mezcla", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
             </div>

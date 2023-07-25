@@ -13,7 +13,7 @@ if(calcular){
       let rounded = result.toFixed(2);
 
       if (rounded <= 0.9) {
-        rounded = rounded  - 0.1;
+        rounded = Math.ceil(rounded)  - 0.1;
       }else if (rounded >= 1.89) {
           rounded = 0 + 1.9;
       }else {
@@ -34,11 +34,12 @@ if(calcular){
       const tvd = document.getElementById('tvd').value;
       const result2 = document.getElementById('temp-gradient').value;
       let bhst = document.getElementById('result').value;
+      let density = document.getElementById('density').value;
 
       // --2 Calculo del BHCT
       // --Evalucación de criterios para establecer el valor de redondeo a la -3
 
-      var x9, x10, x11,t8_roundup, t8_rounddown, t10, e13, e14, bhst_l;
+      var x9, x10, x11,t8_roundup, t8_rounddown, t10, e13, e14, presion_inicial;
 
 
       if(tvd < 999){
@@ -47,25 +48,29 @@ if(calcular){
           x10 = tvd;
       }else{
           x10 = tvd;
+          console.log(x10);
       }
 
       if(x10 == 1000){
           x9 = x10 * 1000 / x10;
       } else {
-          x9 = ((tvd - 99) / 100) * 100;
+          x9 = Math.ceil((tvd - 99) / 100) * 100;
+          console.log(x9);
       }
 
-      if(x10 = 1000){0
+      if(x10 == 1000){
           x11 = 1000;
       }else {
           x11 = tvd + 99 / 100 * 100;
       }
 
       // --Redondeos de t8
-      t8_roundup = result2 * 10 / 10;
-      t8_rounddown = result2 * 10 / 10;
+      t8_roundup = result2 * 10 / 10
+      t8_roundup = parseFloat(t8_roundup.toFixed(1));
+      console.log(t8_roundup);
+      t8_rounddown = Math.floor(result2 * 10) / 10;
 
-      fetch(`/requests/get_data?x9=${x9}&t8_roundup=${t8_roundup}&t8_rounddown=${t8_rounddown}&tvd=${tvd}&x11=${x11}`, {
+      fetch(`/requests/get_data?x9=${x9}&t8_roundup=${t8_roundup}&t8_rounddown=${t8_rounddown}&valorGradiente=${result2}&x11=${x11}&x10=${x10}`, {
           method: 'GET'
         })
           .then(response => {
@@ -80,6 +85,7 @@ if(calcular){
             
             const t9 = responseData.t9;
             const t11 = responseData.t11;
+            const b9 = responseData.b9;
           
             if(x10 = x9){
               t10 = t9;
@@ -98,6 +104,24 @@ if(calcular){
               bhst = e14.toFixed(1);
             }
             document.getElementById("bhct").value = parseFloat(bhst);
+            
+            //Buscamos el valor de la Presion Inicial
+            if(b9 == 0 ){
+              alert("El valor Depth TVD (ft) debe ser menor o igual a 22.000");
+            }else{
+
+              if(x10 <= 999){
+                presion_inicial = 0
+              }else{
+                presion_inicial = b9
+              }
+  
+              //--Buscamos el valor de la Presion Final
+              
+              presion_inicial = Math.ceil ((0.052 * density * tvd) + presion_inicial)
+              document.getElementById("psi").value = parseFloat(presion_inicial);
+
+            }
 
           })
           .catch(error => {
@@ -115,6 +139,7 @@ if(calcular){
     document.getElementById("job_type").textContent = selected;
 
   }
+
 }
 
 });

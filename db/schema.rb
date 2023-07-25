@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_06_155337) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_21_212905) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,8 +18,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_155337) do
     t.float "depth", null: false
     t.float "casing", null: false
     t.float "valor", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -44,6 +42,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_155337) do
     t.string "job_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "liners", force: :cascade do |t|
+    t.float "datoa"
+    t.float "datob"
   end
 
   create_table "requests", force: :cascade do |t|

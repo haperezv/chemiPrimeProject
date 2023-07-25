@@ -14,12 +14,13 @@ class RequestsController < ApplicationController
         x9 = params[:x9]
         t8_roundup = params[:t8_roundup]
         t8_rounddown = params[:t8_rounddown]
-        tvd = params[:tvd]
+        valorGradiente = params[:valorGradiente]
         x11 = params[:x11]
+        x10 = params[:x10]
 
         busqueda1 = Casing.where(depth: x9.to_f, valor: t8_roundup.to_f)
         busqueda2 = Casing.where(depth: x9.to_f, valor: t8_rounddown.to_f)
-        busqueda3 = tvd.to_f -  t8_rounddown.to_f
+        busqueda3 = valorGradiente.to_f -  t8_rounddown.to_f
 
         if busqueda1.empty?
             @b1 = 0
@@ -39,6 +40,7 @@ class RequestsController < ApplicationController
 
         puts "@b1 #{@b1}"
         puts "@b2 #{@b2}"
+        puts "busqueda3 #{busqueda3}"
 
         t9 = (@b1 - @b2) * busqueda3  * 10 + @b2
 
@@ -67,11 +69,26 @@ class RequestsController < ApplicationController
         t11 = (@b4 - @b5) * busqueda3  * 10 + @b5
 
         puts "t11: #{t11}"
+        #debugger
+        busqueda9 = Liner.where(datoa: x10.to_f)
+
+        
+        if busqueda9.empty?
+            @b9 = 0
+        else
+            busqueda9.each do |b9|
+                 @b9 = b9.datob
+                 puts "busqueda9 #{b9}"
+            end
+        end
 
         data = {
             t9: t9,
-            t11: t11
+            t11: t11,
+            b9: @b9
         }
+
+        puts data
         
         respond_to do |format|
           format.json { render json: data }
