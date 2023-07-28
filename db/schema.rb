@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_21_212905) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_125242) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "aportes", force: :cascade do |t|
+    t.string "aporte"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "casings", force: :cascade do |t|
     t.float "depth", null: false
@@ -49,6 +55,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_212905) do
     t.float "datob"
   end
 
+  create_table "nivels", force: :cascade do |t|
+    t.string "nivel"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "requests", force: :cascade do |t|
     t.date "request_date", null: false
     t.datetime "created_at", null: false
@@ -69,12 +81,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_212905) do
     t.float "depth_tvd", null: false
     t.float "psi", null: false
     t.float "bhct", null: false
-    t.text "time_mezcla", null: false
+    t.integer "time_mezcla", null: false
     t.float "mud_weight", default: 0.0
+    t.integer "time_security"
+    t.integer "time_pumpability"
+    t.integer "total_time"
+    t.integer "time_operation"
+    t.bigint "nivel_id", null: false
+    t.bigint "aporte_id", null: false
+    t.index ["aporte_id"], name: "index_requests_on_aporte_id"
     t.index ["customer_id"], name: "index_requests_on_customer_id"
     t.index ["departament_id"], name: "index_requests_on_departament_id"
     t.index ["extent_id"], name: "index_requests_on_extent_id"
     t.index ["job_id"], name: "index_requests_on_job_id"
+    t.index ["nivel_id"], name: "index_requests_on_nivel_id"
     t.index ["slug"], name: "index_requests_on_slug", unique: true
   end
 
@@ -96,8 +116,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_212905) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "requests", "aportes"
   add_foreign_key "requests", "customers"
   add_foreign_key "requests", "departaments"
   add_foreign_key "requests", "extents"
   add_foreign_key "requests", "jobs"
+  add_foreign_key "requests", "nivels"
 end

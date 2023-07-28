@@ -1,4 +1,5 @@
 window.addEventListener("turbo:load", function(){
+document.getElementById('request_nivel_id').style.display = 'none';  
 const calcular = document.getElementById('calcular');
 if(calcular){
   calcular.addEventListener('click', tempGradient);
@@ -139,6 +140,20 @@ if(calcular){
     document.getElementById("job_type").textContent = selected;
 
   }
+
+}
+
+const option = document.getElementById('request_aporte_id');
+option.addEventListener('click', aport_gas);
+
+function aport_gas(){
+
+  if(option.value == 1){
+    document.getElementById('request_nivel_id').style.display = '';
+  }else{
+    document.getElementById('request_nivel_id').style.display = 'none'; 
+  }
+
 
 }
 

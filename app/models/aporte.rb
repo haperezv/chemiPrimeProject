@@ -1,0 +1,2 @@
+class Aporte < ApplicationRecord
+end

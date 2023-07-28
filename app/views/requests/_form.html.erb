@@ -30,7 +30,7 @@
                         Job Type                                          
                 </span>
 
-                <%= form.collection_select :job_id, Job.all, :id, :job_type, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
+                <%= form.collection_select :job_id, Job.all, :id, :job_type,  {include_blank: true  }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
             </div>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
@@ -56,13 +56,13 @@
                 <span class="text-gray-700 dark:text-gray-400">
                     Base
                 </span>
-                <%=form.collection_select :departament_id, Departament.all, :id, :departament, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
+                <%=form.collection_select :departament_id, Departament.all, :id, :departament, {include_blank: true  }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
             </div>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                     Customer
                 </span>
-                <%= form.collection_select :customer_id, Customer.all, :id, :customer, {promt: "---Select Category---" }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
+                <%= form.collection_select :customer_id, Customer.all, :id, :customer, {include_blank: true  }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
             </div> 
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
@@ -169,10 +169,44 @@
         <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
-                        Pre mezcla                                        
+                        Tiempo Pre mezcla                                        
                 </span>
-                <%= form.text_field :time_mezcla, placeholder:"mezcla", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+                <%= form.text_field  :time_mezcla, placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
             </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Tiempo de Seguridad                                       
+                </span>
+                <%= form.text_field  :time_security, placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Tiempo de bombeabilidad                                       
+                </span>
+                <%= form.text_field  :time_pumpability,  placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Total de Tiempos (premezcal, bombeabilidad, seguridad)
+                </span>
+                <%= form.text_field  :total_time,  placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Tiempo de operacion                                       
+                </span>
+                <%= form.text_field  :time_operation,  placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Aporte de Gas                                      
+                </span>
+                <%= form.collection_select :aporte_id, Aporte.all, :id, :aporte, { include_blank: true }, { class: 'start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500'} %>
+            </div>
+            <div class="relative max-w-sm">
+                <%= form.collection_select :nivel_id, Nivel.all, :id, :nivel, {include_blank: true  }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"} %>
+            </div>
+
         </div>
     </div>
     <%= form.submit "Submit item", class:"cursor-pointer my-2 px-4 py-2 text-center inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"%>
