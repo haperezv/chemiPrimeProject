@@ -22,8 +22,14 @@
 #  depth_tvd            :float            not null
 #  psi                  :float            not null
 #  bhct                 :float            not null
-#  time_mezcla          :text             not null
-#  mud_weight           :decimal(, )      default(0.0), not null
+#  time_mezcla          :integer          not null
+#  mud_weight           :float            default(0.0)
+#  time_security        :integer
+#  time_pumpability     :integer
+#  total_time           :integer
+#  time_operation       :integer
+#  nivel_id             :bigint           not null
+#  aporte_id            :bigint           not null
 #
 class Request < ApplicationRecord
     after_create :serial_request
@@ -42,6 +48,9 @@ class Request < ApplicationRecord
     validates :pipe_size, presence: { message: "El tamaño de la tubería no puede estar vacío"}
     validates :bhst, presence: { message: "El BHST no puede estar vacío"}
     validates :mud_weight, presence: { message: "El peso del lodo no puede estar vacío"}
+    validates :time_security, presence: { message: "El tiempo de seguridad no puede estar vacio"}
+    validates :depth_tvd, presence: { message: "La profundidad Depth TVD no puede estar vacia" }
+
 
     private
         

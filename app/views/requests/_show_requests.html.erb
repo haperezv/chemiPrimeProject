@@ -112,9 +112,36 @@
             </div>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
-                        Description mezcla                                        
+                        Tiempo Pre mezcla                                        
                 </span>
                 <%= form.text_field :time_mezcla, placeholder:"mezcla", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true %>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Tiempo de Seguridad                                       
+                </span>
+                <%= form.text_field  :time_security, placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true%>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Tiempo de bombeabilidad                                       
+                </span>
+                <%= form.text_field  :time_pumpability,  placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true%>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Total de Tiempos (premezcal, bombeabilidad, seguridad)                                       
+                </span>
+                <%= form.text_field  :time_operation,  placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true%>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Aporte de Gas                                      
+                </span>
+                <%= form.collection_select :aporte_id, Aporte.all, :id, :aporte, { include_blank: true }, { class: 'start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500', disabled: true} %>
+            </div>
+            <div class="relative max-w-sm">
+                <%= form.collection_select :nivel_id, Nivel.all, :id, :nivel, {include_blank: true  }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500", disabled: true} %>
             </div>
         </div>
     </div>

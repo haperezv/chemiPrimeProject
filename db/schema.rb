@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_27_125242) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_04_124545) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,8 +87,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_125242) do
     t.integer "time_pumpability"
     t.integer "total_time"
     t.integer "time_operation"
-    t.bigint "nivel_id", null: false
-    t.bigint "aporte_id", null: false
+    t.bigint "nivel_id", default: 0, null: false
+    t.bigint "aporte_id", default: 0, null: false
     t.index ["aporte_id"], name: "index_requests_on_aporte_id"
     t.index ["customer_id"], name: "index_requests_on_customer_id"
     t.index ["departament_id"], name: "index_requests_on_departament_id"

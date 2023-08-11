@@ -1,5 +1,14 @@
 window.addEventListener("turbo:load", function(){
-document.getElementById('request_nivel_id').style.display = 'none';  
+  
+const  option = document.getElementById('request_aporte_id');  
+
+if(option.value == 1){
+  document.getElementById('request_nivel_id').style.display = '';
+}else{
+  document.getElementById('request_nivel_id').style.display = 'none';
+}
+
+  
 const calcular = document.getElementById('calcular');
 if(calcular){
   calcular.addEventListener('click', tempGradient);
@@ -143,7 +152,6 @@ if(calcular){
 
 }
 
-const option = document.getElementById('request_aporte_id');
 option.addEventListener('click', aport_gas);
 
 function aport_gas(){
@@ -155,6 +163,22 @@ function aport_gas(){
   }
 
 
+}
+
+const calcular_total = document.getElementById('calcular_total');
+
+if(calcular_total){
+  
+  calcular_total.addEventListener('click', total_tiempo);
+  function total_tiempo(){
+    const time_mezcla = document.getElementById('time_mezcla').value;
+    const time_mezclatime_mezcla = document.getElementById('time_mezclatime_mezcla').value;
+    const time_pumpability = document.getElementById('time_pumpability').value;
+    const time_operation = document.getElementById('time_operation').value;
+
+    document.getElementById("total_time").value = parseInt(time_mezcla) + parseInt(time_mezclatime_mezcla) + parseInt(time_pumpability) + parseInt(time_operation)
+
+  }
 }
 
 });

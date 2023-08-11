@@ -22,8 +22,14 @@
 #  depth_tvd            :float            not null
 #  psi                  :float            not null
 #  bhct                 :float            not null
-#  time_mezcla          :text             not null
-#  mud_weight           :decimal(, )      default(0.0), not null
+#  time_mezcla          :integer          not null
+#  mud_weight           :float            default(0.0)
+#  time_security        :integer
+#  time_pumpability     :integer
+#  total_time           :integer
+#  time_operation       :integer
+#  nivel_id             :bigint           not null
+#  aporte_id            :bigint           not null
 #
 require "test_helper"
 

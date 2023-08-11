@@ -75,13 +75,38 @@
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
         <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"> Operation </h4>
     </div>
+
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
+        <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Pipe Size                                          
+                </span>
+                <%= form.text_field :pipe_size, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Depth MD (ft)                                         
+                </span>
+                <%= form.text_field :depth_md, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
+            </div>
+            <div class="relative max-w-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                        Aporte de Gas                                      
+                </span>
+                <%= form.collection_select :aporte_id, Aporte.all, :id, :aporte, { include_blank: true }, { class: 'start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500'} %>
+            </div>
+            <div class="relative max-w-sm">
+                <%= form.collection_select :nivel_id, Nivel.all, :id, :nivel, {include_blank: true  }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"} %>
+            </div>
+
+        </div>
+    </div>
     <div class="grid gap-6 mb-8 md:grid-cols-2">
-        <div
-        class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-        >
-        <h4 class="mb-4 font-semibold">
-            Imput Data
-        </h4>
+        <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <h4 class="mb-4 font-semibold">
+                Imput Data
+            </h4>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                         Depth TVD (ft)                                         
@@ -119,9 +144,7 @@
                 </span> 
             </div>
         </div>
-        <div
-        class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-        >
+        <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
             <h4 class="mb-4 font-semibold">
                 Output Data <span id="job_type"> </span>
             </h4>
@@ -145,70 +168,55 @@
             </div>
         </div>
     </div>
-    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
-        <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
-            <div class="relative max-w-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                        Pipe Size                                          
-                </span>
-                <%= form.text_field :pipe_size, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
-            </div>
-            <div class="relative max-w-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                        Depth MD (ft)                                         
-                </span>
-                <%= form.text_field :depth_md, placeholder:"0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>       
-            </div>
-        </div>
-    </div>
+
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
         <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"> Time </h4>
     </div>
 
-    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
-        <div class="grid items-end gap-6 mb-6 md:grid-cols-3">
+    <div class="grid gap-6 mb-8 md:grid-cols-2">
+        <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <h4 class="mb-4 font-semibold"> Imput Data </h4>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                         Tiempo Pre mezcla                                        
                 </span>
-                <%= form.text_field  :time_mezcla, placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
+                <%= form.text_field  :time_mezcla, id:"time_mezcla", placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
             </div>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                         Tiempo de Seguridad                                       
                 </span>
-                <%= form.text_field  :time_security, placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
+                <%= form.text_field  :time_security, id:"time_mezclatime_mezcla", placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
             </div>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                         Tiempo de bombeabilidad                                       
                 </span>
-                <%= form.text_field  :time_pumpability,  placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
-            </div>
-            <div class="relative max-w-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                        Total de Tiempos (premezcal, bombeabilidad, seguridad)
-                </span>
-                <%= form.text_field  :total_time,  placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
+                <%= form.text_field  :time_pumpability, id:"time_pumpability", placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
             </div>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                         Tiempo de operacion                                       
                 </span>
-                <%= form.text_field  :time_operation,  placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
+                <%= form.text_field  :time_operation, id:"time_operation", placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
             </div>
+            <div  class=" mt-4 relative max-w-sm">
+                <span  id= "calcular_total" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    <span >Calcular</span>
+                </span> 
+            </div>
+        </div>
+        <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800" >
+            <h4 class="mb-4 font-semibold"> Output Data </h4>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
-                        Aporte de Gas                                      
+                        Total de Tiempos (premezcal, bombeabilidad, seguridad)
                 </span>
-                <%= form.collection_select :aporte_id, Aporte.all, :id, :aporte, { include_blank: true }, { class: 'start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500'} %>
+                <%= form.text_field  :total_time, id:"total_time", placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input"%>       
             </div>
-            <div class="relative max-w-sm">
-                <%= form.collection_select :nivel_id, Nivel.all, :id, :nivel, {include_blank: true  }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"} %>
-            </div>
-
         </div>
     </div>
+
     <%= form.submit "Submit item", class:"cursor-pointer my-2 px-4 py-2 text-center inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"%>
 
 <%end%>
