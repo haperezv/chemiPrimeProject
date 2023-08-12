@@ -28,8 +28,12 @@
 #  time_pumpability     :integer
 #  total_time           :integer
 #  time_operation       :integer
-#  nivel_id             :bigint           not null
-#  aporte_id            :bigint           not null
+#  nivel_id             :bigint           default(0), not null
+#  aporte_id            :bigint           default(0), not null
+#  density              :float
+#  concentration        :float
+#  lote                 :float
+#  aditivo_id           :bigint
 #
 require "test_helper"
 

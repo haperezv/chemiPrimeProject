@@ -126,7 +126,7 @@ class RequestsController < ApplicationController
 
     def request_params
         params.require(:request).permit( :job_time, :job_id, :location, :customer_id, :extent_id, :departament_id, :well_name, :pipe_size, :bhst, :temperature_gradient, :depth_md, :depth_tvd, :psi, :bhct, :time_mezcla, :mud_weight, :time_security, :time_pumpability,
-        :time_operation, :total_time, :aporte_id, :nivel_id )
+        :time_operation, :total_time, :aporte_id, :nivel_id, :density,  :concentration, :lote, :aditivo_id)
     end
     
 

@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_04_124545) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_11_205140) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "aditivos", force: :cascade do |t|
+    t.string "aditivo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "aportes", force: :cascade do |t|
     t.string "aporte"
@@ -89,6 +95,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_04_124545) do
     t.integer "time_operation"
     t.bigint "nivel_id", default: 0, null: false
     t.bigint "aporte_id", default: 0, null: false
+    t.float "density"
+    t.float "concentration"
+    t.float "lote"
+    t.bigint "aditivo_id"
+    t.index ["aditivo_id"], name: "index_requests_on_aditivo_id"
     t.index ["aporte_id"], name: "index_requests_on_aporte_id"
     t.index ["customer_id"], name: "index_requests_on_customer_id"
     t.index ["departament_id"], name: "index_requests_on_departament_id"
@@ -116,6 +127,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_04_124545) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "requests", "aditivos"
   add_foreign_key "requests", "aportes"
   add_foreign_key "requests", "customers"
   add_foreign_key "requests", "departaments"

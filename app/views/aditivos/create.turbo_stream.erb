@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend "aditivos", partial: "aditivos/aditivo", locals: { aditivo: @aditivo }%>
+<%= turbo_stream.update Aditivo.new, "" %>

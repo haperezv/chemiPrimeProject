@@ -45,5 +45,11 @@ Rails.application.routes.draw do
   get 'extents/:id', to: 'extents#show'
   delete 'extents/:id', to: 'extents#destroy', as: 'extent'
 
+  get 'aditivos', to: 'aditivos#index'
+  get 'aditivos/new', to: 'aditivos#new'
+  post 'aditivos', to: 'aditivos#create'
+  get 'aditivos/:id', to: 'aditivos#show'
+  delete 'aditivos/:id', to: 'aditivos#destroy', as: 'aditivo'
+
   root "home#index"
 end
