@@ -132,7 +132,7 @@
                 <span class="text-gray-700 dark:text-gray-400">
                         Total de Tiempos (premezcal, bombeabilidad, seguridad)                                       
                 </span>
-                <%= form.text_field  :time_operation,  placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true%>       
+                <%= form.text_field  :total_time,  placeholder:"0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true%>       
             </div>
             <div class="relative max-w-sm">
                 <span class="text-gray-700 dark:text-gray-400">
@@ -163,36 +163,33 @@
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                         <tr class="text-gray-700 dark:text-gray-400">
-                            <td class="px-4 py-3"> 
-                                <div class="flex items-center text-sm">
-                                    <%= form.text_field :density, placeholder:"0.0", id:"density", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true %>
-                                </div>
-                            </td>
-                            <td class="px-4 py-3"> 
-                                <div class="flex items-center text-sm">
-                                    <%= form.text_field :concentration, placeholder:"0.0", id:"concentration", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true %>
-                                </div>
-                            </td>
-                            <td class="px-4 py-3"> 
-                                <div class="flex items-center text-sm">
-                                    <%= form.text_field :concentration, placeholder:"0.0", id:"concentration", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true %>
-                                </div>
-                            </td>
-                            <td class="px-4 py-3"> 
-                                <div class="flex items-center text-sm">
-                                    <%= form.collection_select :aditivo_id, Aditivo.all, :id, :aditivo, {include_blank: true }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500", disabled: true } %>
-                                </div>
-                            </td>
-                            <td class="px-4 py-3"> 
-                                <div class="flex items-center text-sm">
-                                    <%= form.text_field :lote, placeholder:"0.0", id:"lote", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true %>
-                                </div>
-                            </td>
+                            <%= form.fields_for :slurries do |slurrie_fields| %>
+                                <tr class="text-gray-700 dark:text-gray-400">
+                                    <td class="px-4 py-3 text-sm">
+                                        <%= slurrie_fields.text_field :density, id:"density", placeholder: "0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true %>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <%= slurrie_fields.text_field :concentration, id:"concentration", placeholder: "0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true %>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <%= slurrie_fields.collection_select :extent_id, Extent.all, :id, :extent, {include_blank: true }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500", disabled: true } %>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <%= slurrie_fields.collection_select :aditivo_id, Aditivo.all, :id, :aditivo, {include_blank: true }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500", disabled: true } %>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <%= slurrie_fields.text_field :lote, id:"lote", placeholder: "0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input", disabled: true %> 
+                                    </td>
+                                </tr>
+                            <% end %> 
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
+    <div>
+        <%= link_to "Cancel",requests_path, class:"px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" %>
     </div>
 
 <%end%>

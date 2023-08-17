@@ -181,14 +181,6 @@ if(calcular_total){
   }
 }
 
-  const agregarFila = document.getElementById('agregarFila');
-  agregarFila.addEventListener('click', agregar);
-
-  function agregar(){
-    document.getElementById('tableinformation').insertRow(-1).innerHTML = 
-    '<tr class="text-gray-700 dark:text-gray-400"> <td class="px-4 py-3"> <div class="flex items-center text-sm"> <input id="density" placeholder="0.0" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" type="text" name="request[density]"></div></td><td class="px-4 py-3"><div class="flex items-center text-sm"><input id="concentration" placeholder="0.0" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" type="text" name="request[concentration]"></div></td><td class="px-4 py-3"><div class="flex items-center text-sm"><select class="start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" name="request[extent_id]" id="request_extent_id"><option value="" label=" "></option><option value="2">ppg</option><option value="3">ft3/Sx</option><option value="4">gal/Sx</option><option value="5">ppm</option>    <option value="11">lbm/gal</option></select></div> </td><td class="px-4 py-3"><div class="flex items-center text-sm"><select class="start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" name="request[aditivo_id]" id="request_aditivo_id"><option value="" label=" "></option><option value="3">Ilig sc</option><option value="4">Ilig HT</option><option value="5">IRF-105</option><option value="6">IFL-15</option><option value="7">Expand</option><option value="8">Bentonita</option><option value="9">MicroCemento</option><option value="10">Hematita</option><option value="11">Alivianante</option><option value="12">Esfera</option><option value="13">Argos Class G</option><option value="14">Dyckerhoff Class G</option><option value="15">Water</option><option value="16">Well Water</option><option value="17">Antiespumante</option> <option value="18">ID-100</option> <option value="19">Retardador EV HT</option></select></div><td class="px-4 py-3"><div class="flex items-center text-sm"><input id="lote" placeholder="0.0" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" type="text" name="request[lote]"></div> </tr>'
-
-  }
 
   const eliminarFila = document.getElementById('eliminarFila');
   eliminarFila.addEventListener('click', eliminar);
@@ -197,8 +189,8 @@ if(calcular_total){
     const table = document.getElementById('tableinformation');
     const rowCount = table.rows.length
 
-    if (rowCount <= 1)
-    alert('No se puede eliminar el encabezado')
+    if (rowCount <= 2)
+    alert('No se puede eliminar la primera')
     else
     table.deleteRow(rowCount -1)
   }

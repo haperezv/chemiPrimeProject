@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_11_205140) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_17_132320) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_205140) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "request_slurries", force: :cascade do |t|
+    t.bigint "request_id", null: false
+    t.bigint "slurrie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_request_slurries_on_request_id"
+    t.index ["slurrie_id"], name: "index_request_slurries_on_slurrie_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.date "request_date", null: false
     t.datetime "created_at", null: false
@@ -93,13 +102,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_205140) do
     t.integer "time_pumpability"
     t.integer "total_time"
     t.integer "time_operation"
-    t.bigint "nivel_id", default: 0, null: false
-    t.bigint "aporte_id", default: 0, null: false
-    t.float "density"
-    t.float "concentration"
-    t.float "lote"
-    t.bigint "aditivo_id"
-    t.index ["aditivo_id"], name: "index_requests_on_aditivo_id"
+    t.bigint "nivel_id", default: 0
+    t.bigint "aporte_id", default: 0
+    t.bigint "slurrie_id"
     t.index ["aporte_id"], name: "index_requests_on_aporte_id"
     t.index ["customer_id"], name: "index_requests_on_customer_id"
     t.index ["departament_id"], name: "index_requests_on_departament_id"
@@ -107,12 +112,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_205140) do
     t.index ["job_id"], name: "index_requests_on_job_id"
     t.index ["nivel_id"], name: "index_requests_on_nivel_id"
     t.index ["slug"], name: "index_requests_on_slug", unique: true
+    t.index ["slurrie_id"], name: "index_requests_on_slurrie_id"
   end
 
   create_table "samples", force: :cascade do |t|
     t.string "sample", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "slurries", force: :cascade do |t|
+    t.float "density"
+    t.float "concentration"
+    t.float "lote"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "request_id", null: false
+    t.bigint "aditivo_id"
+    t.bigint "extent_id"
+    t.index ["aditivo_id"], name: "index_slurries_on_aditivo_id"
+    t.index ["extent_id"], name: "index_slurries_on_extent_id"
+    t.index ["request_id"], name: "index_slurries_on_request_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -127,11 +147,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_205140) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "requests", "aditivos"
+  add_foreign_key "request_slurries", "requests"
+  add_foreign_key "request_slurries", "slurries", column: "slurrie_id"
   add_foreign_key "requests", "aportes"
   add_foreign_key "requests", "customers"
   add_foreign_key "requests", "departaments"
   add_foreign_key "requests", "extents"
   add_foreign_key "requests", "jobs"
   add_foreign_key "requests", "nivels"
+  add_foreign_key "requests", "slurries", column: "slurrie_id"
+  add_foreign_key "slurries", "aditivos"
+  add_foreign_key "slurries", "extents"
+  add_foreign_key "slurries", "requests"
 end

@@ -30,9 +30,6 @@
 #  time_operation       :integer
 #  nivel_id             :bigint           default(0), not null
 #  aporte_id            :bigint           default(0), not null
-#  density              :float
-#  concentration        :float
-#  lote                 :float
 #  aditivo_id           :bigint
 #
 

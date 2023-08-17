@@ -1,4 +1,4 @@
-<%= form_with(model:@request) do |form| %> 
+<%= form_with(model:@request, data:{controller: "informations", index: @request.slurries.length }) do |form| %> 
 
         <% if @request.errors.any? %>
             <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -222,25 +222,47 @@
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
-                <table class="w-full whitespace-no-wrap" id="tableinformation">
-                    <thead>
-                        <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">                      
-                        <th class="px-4 py-3">Slurry Density lbm/gal</th>
-                        <th class="px-4 py-3">Conc</th>
-                        <th class="px-4 py-3">Porcentaje de Unidad %</th>
-                        <th class="px-4 py-3">Cement / Additive</th>
-                        <th class="px-4 py-3">lot Nº</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                    </tbody>
-                </table>
+                        <table class="w-full whitespace-no-wrap" id="tableinformation">
+                            <thead>
+                                <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">                      
+                                <th class="px-4 py-3">Slurry Density lbm/gal</th>
+                                <th class="px-4 py-3">Conc</th>
+                                <th class="px-4 py-3">Porcentaje de Unidad %</th>
+                                <th class="px-4 py-3">Cement / Additive</th>
+                                <th class="px-4 py-3">lot Nº</th>
+                                </tr>
+                            </thead>
+                            <tbody id="informations" is="turbo-frame" class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+            
+                                    <%= form.fields_for :slurries do |slurrie_fields| %>
+                                        <tr class="text-gray-700 dark:text-gray-400">
+                                            <td class="px-4 py-3 text-sm">
+                                                <%= slurrie_fields.text_field :density, id:"density", placeholder: "0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                <%= slurrie_fields.text_field :concentration, id:"concentration", placeholder: "0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %>
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                <%= slurrie_fields.collection_select :extent_id, Extent.all, :id, :extent, {include_blank: true }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                <%= slurrie_fields.collection_select :aditivo_id, Aditivo.all, :id, :aditivo, {include_blank: true }, { class: "start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                <%= slurrie_fields.text_field :lote, id:"lote", placeholder: "0.0", class:"block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" %> 
+                                            </td>
+                                        </tr>
+                                    <% end %> 
+                                   
+                            </tbody>
+                        </table>
+                
                 <div class="px-4 py-2">
-                    <button type="button" class="btn btn-primary mr-2"  id="agregarFila">
+                    <button type="button" data-action="click->informations#add" class="btn btn-primary mr-2">
                         <svg class="h-6 w-6 text-green-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="9" />  <line x1="9" y1="12" x2="15" y2="12" />  <line x1="12" y1="9" x2="12" y2="15" />
                         </svg>
                     </button>
-                    <button type="button" class="btn btn-primary mr-2"  id="eliminarFila">
+                    <button type="button"  class="btn btn-primary mr-2"  id="eliminarFila">
                         <svg class="h-6 w-6 text-red-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="9" />  <line x1="9" y1="12" x2="15" y2="12" /></svg>
                     </button>
                 </div>

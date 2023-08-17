@@ -30,14 +30,13 @@
 #  time_operation       :integer
 #  nivel_id             :bigint           default(0), not null
 #  aporte_id            :bigint           default(0), not null
-#  density              :float
-#  concentration        :float
-#  lote                 :float
 #  aditivo_id           :bigint
 #
 class Request < ApplicationRecord
     after_create :serial_request
     belongs_to :job
+    has_many :slurries, class_name: 'Slurrie'
+    accepts_nested_attributes_for :slurries, allow_destroy: true
     extend FriendlyId
     friendly_id :request_serial, use: :slugged
     

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get 'bhst_calculator', to: 'requests#bhst_calculator', on: :collection
   end
 
+  resources :slurries
+
   #get 'requests/index', to: 'requests#index'
   #get 'requests/new', to: 'requests#new'
   #post 'requests', to: 'requests#create'
