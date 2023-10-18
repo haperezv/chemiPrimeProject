@@ -51,7 +51,7 @@ class SlurriesController < ApplicationController
 
         # Only allow a list of trusted parameters through.
         def slurrie_params
-            params.require(:slurrie).permit(:request_id, :aditivo_id, :extent_id, :density, :concentration, :lote)
+            params.require(:slurrie).permit(:request_id, :aditivo_id, :extent_id, :concentration, :lote)
         end
 
 

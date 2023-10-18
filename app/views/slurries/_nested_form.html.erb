@@ -1,8 +1,5 @@
 <tr class="text-gray-700 dark:text-gray-400">    
     <td class="px-4 py-3 text-sm">
-        <input id="density" placeholder="0.0" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" type="text" name="request[slurries_attributes][0][density]">
-    </td>
-    <td class="px-4 py-3 text-sm">
         <input id="concentration" placeholder="0.0" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" type="text" name="request[slurries_attributes][0][concentration]">
     </td>
     <td class="px-4 py-3 text-sm">
@@ -11,7 +8,11 @@
         <option value="3">ft3/Sx</option>
         <option value="4">gal/Sx</option>
         <option value="5">ppm</option>
-        <option value="11">lbm/gal</option></select>
+        <option value="11">lbm/gal</option>
+        <option value="15">% BWOC</option>
+        <option value="16">lb/bbl</option>
+        <option value="17">gal/bbl</option>
+        <option value="18">lb/sx</option></select>
     </td>
     <td class="px-4 py-3 text-sm">
         <select class="start_time bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" name="request[slurries_attributes][0][aditivo_id]" id="request_slurries_attributes_0_aditivo_id"><option value="" label=" "></option>
@@ -34,6 +35,6 @@
         <option value="19">Retardador EV HT</option></select>
     </td>
     <td class="px-4 py-3 text-sm">
-        <input id="lote" placeholder="0.0" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" type="text" name="request[slurries_attributes][0][lote]"> 
+        <input id="lote" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-black-300 dark:focus:shadow-outline-gray form-input" type="text" name="request[slurries_attributes][0][lote]"> 
     </td>
 </tr>

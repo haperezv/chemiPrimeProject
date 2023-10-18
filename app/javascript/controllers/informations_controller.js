@@ -20,6 +20,7 @@ export default class extends Controller {
         text = text.replace("[0]", `[${this.index}]` );
         text = text.replace("[0]", `[${this.index}]` );
         text = text.replace("[0]", `[${this.index}]` );
+        text = text.replace("[0]", `[${this.index}]` );
 
      //   console.log(text);
         Turbo.renderStreamMessage(text)

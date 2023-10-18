@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :slurries
+  resources :slurrie_densities
 
   #get 'requests/index', to: 'requests#index'
   #get 'requests/new', to: 'requests#new'

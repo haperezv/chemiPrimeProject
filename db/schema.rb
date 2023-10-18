@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_17_132320) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_17_121903) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -105,6 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_132320) do
     t.bigint "nivel_id", default: 0
     t.bigint "aporte_id", default: 0
     t.bigint "slurrie_id"
+    t.bigint "slurrie_densities_id"
     t.index ["aporte_id"], name: "index_requests_on_aporte_id"
     t.index ["customer_id"], name: "index_requests_on_customer_id"
     t.index ["departament_id"], name: "index_requests_on_departament_id"
@@ -112,6 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_132320) do
     t.index ["job_id"], name: "index_requests_on_job_id"
     t.index ["nivel_id"], name: "index_requests_on_nivel_id"
     t.index ["slug"], name: "index_requests_on_slug", unique: true
+    t.index ["slurrie_densities_id"], name: "index_requests_on_slurrie_densities_id"
     t.index ["slurrie_id"], name: "index_requests_on_slurrie_id"
   end
 
@@ -121,10 +123,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_132320) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "slurrie_densities", force: :cascade do |t|
+    t.float "slurrie_densitie"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "extent_id"
+    t.bigint "request_id", null: false
+    t.index ["extent_id"], name: "index_slurrie_densities_on_extent_id"
+    t.index ["request_id"], name: "index_slurrie_densities_on_request_id"
+  end
+
   create_table "slurries", force: :cascade do |t|
-    t.float "density"
     t.float "concentration"
-    t.float "lote"
+    t.string "lote"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "request_id", null: false
@@ -155,7 +166,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_132320) do
   add_foreign_key "requests", "extents"
   add_foreign_key "requests", "jobs"
   add_foreign_key "requests", "nivels"
+  add_foreign_key "requests", "slurrie_densities", column: "slurrie_densities_id"
   add_foreign_key "requests", "slurries", column: "slurrie_id"
+  add_foreign_key "slurrie_densities", "extents"
+  add_foreign_key "slurrie_densities", "requests"
   add_foreign_key "slurries", "aditivos"
   add_foreign_key "slurries", "extents"
   add_foreign_key "slurries", "requests"

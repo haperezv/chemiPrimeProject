@@ -35,6 +35,8 @@
 class Request < ApplicationRecord
     after_create :serial_request
     belongs_to :job
+    has_one :slurrie_density
+    accepts_nested_attributes_for :slurrie_density, allow_destroy: true
     has_many :slurries, class_name: 'Slurrie'
     accepts_nested_attributes_for :slurries, allow_destroy: true
     extend FriendlyId
