@@ -28,9 +28,11 @@
 #  time_pumpability     :integer
 #  total_time           :integer
 #  time_operation       :integer
-#  nivel_id             :bigint           default(0), not null
-#  aporte_id            :bigint           default(0), not null
-#  aditivo_id           :bigint
+#  nivel_id             :bigint           default(0)
+#  aporte_id            :bigint           default(0)
+#  slurrie_id           :bigint
+#  slurrie_densities_id :bigint
+#  parameter_desings_id :bigint
 #
 class Request < ApplicationRecord
     after_create :serial_request
@@ -39,6 +41,8 @@ class Request < ApplicationRecord
     accepts_nested_attributes_for :slurrie_density, allow_destroy: true
     has_many :slurries, class_name: 'Slurrie'
     accepts_nested_attributes_for :slurries, allow_destroy: true
+    has_many :parameter_desings, class_name: 'ParameterDesing'
+    accepts_nested_attributes_for :parameter_desings, allow_destroy: true
     extend FriendlyId
     friendly_id :request_serial, use: :slugged
     

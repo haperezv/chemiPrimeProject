@@ -9,6 +9,7 @@ class RequestsController < ApplicationController
        @request = Request.new
        @request.slurries << Slurrie.new if @request.slurries.empty?
        @request.build_slurrie_density
+       @request.parameter_desings << ParameterDesing.new  if @request.parameter_desings.empty?
     end
 
     def get_data
@@ -131,7 +132,8 @@ class RequestsController < ApplicationController
 
     def request_params
         params.require(:request).permit( :job_time, :job_id, :location, :customer_id, :extent_id, :departament_id, :well_name, :pipe_size, :bhst, :temperature_gradient, :depth_md, :depth_tvd, :psi, :bhct, :time_mezcla, :mud_weight, :time_security, :time_pumpability,
-        :time_operation, :total_time, :aporte_id, :nivel_id, :aditivo_id, :slurrie_id, :slurrie_densities_id, slurrie_density_attributes: [:slurrie_densitie, :extent_id, :request_id ], slurries_attributes: [ :id, :concentration, :lote, :extent_id, :aditivo_id] )
+        :time_operation, :total_time, :observaciones, :aporte_id, :nivel_id, :aditivo_id, :slurrie_id, :slurrie_densities_id, slurrie_density_attributes: [:slurrie_densitie, :extent_id, :request_id ], slurries_attributes: [ :id, :concentration, :lote, :extent_id, :aditivo_id],
+        parameter_desings_attributes: [:id, :name, :application, :unit, :request_id] )
     end
     
 

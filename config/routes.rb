@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :slurries
   resources :slurrie_densities
+  resources :parameter_designs
 
   #get 'requests/index', to: 'requests#index'
   #get 'requests/new', to: 'requests#new'

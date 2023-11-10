@@ -28,9 +28,11 @@
 #  time_pumpability     :integer
 #  total_time           :integer
 #  time_operation       :integer
-#  nivel_id             :bigint           default(0), not null
-#  aporte_id            :bigint           default(0), not null
-#  aditivo_id           :bigint
+#  nivel_id             :bigint           default(0)
+#  aporte_id            :bigint           default(0)
+#  slurrie_id           :bigint
+#  slurrie_densities_id :bigint
+#  parameter_desings_id :bigint
 #
 
 one:

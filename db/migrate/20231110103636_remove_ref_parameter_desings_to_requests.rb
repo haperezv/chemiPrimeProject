@@ -1,0 +1,5 @@
+class RemoveRefParameterDesingsToRequests < ActiveRecord::Migration[7.0]
+  def change
+    remove_reference :parameter_desings, :requests, null: false, foreign_key: true
+  end
+end

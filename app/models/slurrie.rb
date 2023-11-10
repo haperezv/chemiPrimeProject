@@ -3,12 +3,13 @@
 # Table name: slurries
 #
 #  id            :bigint           not null, primary key
-#  density       :float
 #  concentration :float
-#  lote          :float
+#  lote          :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  request_id    :bigint           not null
+#  aditivo_id    :bigint
+#  extent_id     :bigint
 #
 class Slurrie  < ApplicationRecord
     belongs_to  :request

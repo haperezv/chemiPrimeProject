@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_17_121903) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_10_211241) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_17_121903) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "parameter_desings", force: :cascade do |t|
+    t.string "name"
+    t.string "application"
+    t.string "unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "request_id"
+    t.index ["request_id"], name: "index_parameter_desings_on_request_id"
+  end
+
+  create_table "parameters", force: :cascade do |t|
+    t.string "name"
+    t.string "solicitud"
+    t.string "unidades"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "requests_id", null: false
+    t.index ["requests_id"], name: "index_parameters_on_requests_id"
+  end
+
   create_table "request_slurries", force: :cascade do |t|
     t.bigint "request_id", null: false
     t.bigint "slurrie_id", null: false
@@ -106,12 +126,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_17_121903) do
     t.bigint "aporte_id", default: 0
     t.bigint "slurrie_id"
     t.bigint "slurrie_densities_id"
+    t.bigint "parameter_desings_id"
+    t.text "observaciones"
     t.index ["aporte_id"], name: "index_requests_on_aporte_id"
     t.index ["customer_id"], name: "index_requests_on_customer_id"
     t.index ["departament_id"], name: "index_requests_on_departament_id"
     t.index ["extent_id"], name: "index_requests_on_extent_id"
     t.index ["job_id"], name: "index_requests_on_job_id"
     t.index ["nivel_id"], name: "index_requests_on_nivel_id"
+    t.index ["parameter_desings_id"], name: "index_requests_on_parameter_desings_id"
     t.index ["slug"], name: "index_requests_on_slug", unique: true
     t.index ["slurrie_densities_id"], name: "index_requests_on_slurrie_densities_id"
     t.index ["slurrie_id"], name: "index_requests_on_slurrie_id"
@@ -158,6 +181,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_17_121903) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "parameter_desings", "requests"
+  add_foreign_key "parameters", "requests", column: "requests_id"
   add_foreign_key "request_slurries", "requests"
   add_foreign_key "request_slurries", "slurries", column: "slurrie_id"
   add_foreign_key "requests", "aportes"
@@ -166,6 +191,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_17_121903) do
   add_foreign_key "requests", "extents"
   add_foreign_key "requests", "jobs"
   add_foreign_key "requests", "nivels"
+  add_foreign_key "requests", "parameter_desings", column: "parameter_desings_id"
   add_foreign_key "requests", "slurrie_densities", column: "slurrie_densities_id"
   add_foreign_key "requests", "slurries", column: "slurrie_id"
   add_foreign_key "slurrie_densities", "extents"
