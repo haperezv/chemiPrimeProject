@@ -288,7 +288,7 @@
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
                         <%= form.fields_for :parameter_desings do |parameter_desing_fields| %>
-                            <table class="w-full whitespace-no-wrap" id="tableinformation">
+                            <table class="w-full whitespace-no-wrap" id="tableparameters">
                                 <thead>
                                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">                      
                                     <th class="px-4 py-3">Variable</th>
@@ -317,7 +317,7 @@
                         <svg class="h-6 w-6 text-green-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="9" />  <line x1="9" y1="12" x2="15" y2="12" />  <line x1="12" y1="9" x2="12" y2="15" />
                         </svg>
                     </button>
-                    <button type="button"  class="btn btn-primary mr-2">
+                    <button type="button"  class="btn btn-primary mr-2" id="eliminarFilaParameters">
                         <svg class="h-6 w-6 text-red-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="9" />  <line x1="9" y1="12" x2="15" y2="12" /></svg>
                     </button>
                 </div>

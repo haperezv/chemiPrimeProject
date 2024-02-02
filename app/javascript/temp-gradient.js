@@ -195,6 +195,19 @@ if(calcular_total){
     table.deleteRow(rowCount -1)
   }
 
+  const eliminarFilaParameters = document.getElementById('eliminarFilaParameters');
+  eliminarFilaParameters.addEventListener('click', eliminar);
+
+  function eliminar(){
+    const table = document.getElementById('tableparameters');
+    const rowCount = table.rows.length
+
+    if (rowCount <= 2)
+    alert('No se puede eliminar la primera')
+    else
+    table.deleteRow(rowCount -1)
+  }
+
 
 
 });
