@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+  db: 
+    image: postgres:12
+    volumes:
+      - db_data:/var/lib/postgres/data
+    environment:
+      - POSTGRES_DB=chemiPrimeDev_dev
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  app:
+    build: .
+    command: sh -c "rm -f /app/tmp/pids/server.pid && bin/rails s -b 0.0.0.0"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      POSTGRES_DB: chemiPrimeDev_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+volumes:
+  db_data:

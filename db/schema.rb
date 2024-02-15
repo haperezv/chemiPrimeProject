@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_10_211241) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_14_222549) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,16 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_10_211241) do
     t.index ["request_id"], name: "index_parameter_desings_on_request_id"
   end
 
-  create_table "parameters", force: :cascade do |t|
-    t.string "name"
-    t.string "solicitud"
-    t.string "unidades"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "requests_id", null: false
-    t.index ["requests_id"], name: "index_parameters_on_requests_id"
-  end
-
   create_table "request_slurries", force: :cascade do |t|
     t.bigint "request_id", null: false
     t.bigint "slurrie_id", null: false
@@ -105,7 +95,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_10_211241) do
     t.bigint "job_id", null: false
     t.string "location", null: false
     t.bigint "customer_id", null: false
-    t.bigint "extent_id", null: false
     t.bigint "departament_id", null: false
     t.string "well_name", null: false
     t.string "slug"
@@ -128,6 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_10_211241) do
     t.bigint "slurrie_densities_id"
     t.bigint "parameter_desings_id"
     t.text "observaciones"
+    t.integer "extent_id"
     t.index ["aporte_id"], name: "index_requests_on_aporte_id"
     t.index ["customer_id"], name: "index_requests_on_customer_id"
     t.index ["departament_id"], name: "index_requests_on_departament_id"
@@ -182,13 +172,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_10_211241) do
   end
 
   add_foreign_key "parameter_desings", "requests"
-  add_foreign_key "parameters", "requests", column: "requests_id"
   add_foreign_key "request_slurries", "requests"
   add_foreign_key "request_slurries", "slurries", column: "slurrie_id"
   add_foreign_key "requests", "aportes"
   add_foreign_key "requests", "customers"
   add_foreign_key "requests", "departaments"
-  add_foreign_key "requests", "extents"
   add_foreign_key "requests", "jobs"
   add_foreign_key "requests", "nivels"
   add_foreign_key "requests", "parameter_desings", column: "parameter_desings_id"
