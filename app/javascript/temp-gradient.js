@@ -183,9 +183,9 @@ if(calcular_total){
 
 
   const eliminarFila = document.getElementById('eliminarFila');
-  eliminarFila.addEventListener('click', eliminar);
+  eliminarFila.addEventListener('click', eliminarInformation);
 
-  function eliminar(){
+  function eliminarInformation(){
     const table = document.getElementById('tableinformation');
     const rowCount = table.rows.length
 

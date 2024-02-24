@@ -9,12 +9,12 @@ class SlurriesController < ApplicationController
     end
 
     def new
-        @slurrie = Slurrie.new
-        respond_to do |format|
-          format.turbo_stream do
-            render turbo_stream: turbo_stream.append("informations", partial:"slurries/nested_form")
-          end
+      @slurrie = Slurrie.new
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append("informations", partial: "slurries/nested_form", locals: { slurrie: @slurrie })
         end
+      end
     end
 
     def edit
